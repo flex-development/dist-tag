@@ -34,11 +34,6 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./main": {
-      "types": "./dist/main.d.ts",
-      "import": "./dist/main.mjs",
-      "require": "./dist/main.cjs"
-    },
     "./options": {
       "types": "./dist/options.d.ts",
       "import": "./dist/options.mjs",
