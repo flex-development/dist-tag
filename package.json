@@ -34,6 +34,11 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
+    "./flags": {
+      "types": "./dist/flags.d.ts",
+      "import": "./dist/flags.mjs",
+      "require": "./dist/flags.cjs"
+    },
     "./options": {
       "types": "./dist/options.d.ts",
       "import": "./dist/options.mjs",
