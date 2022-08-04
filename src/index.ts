@@ -3,4 +3,4 @@
  * @module dtag
  */
 
-export {}
+export type { default as Options } from './options'
