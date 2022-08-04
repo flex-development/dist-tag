@@ -1,58 +1,74 @@
 {
+  // https://github.com/tsconfig/bases/blob/main/bases/node14.json
+  // https://github.com/tsconfig/bases/blob/main/bases/esm.json
+  // https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
   "compilerOptions": {
     "allowJs": true,
     "allowUnreachableCode": false,
-    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": false,
     "baseUrl": "./",
-    "checkJs": true,
-    "downlevelIteration": true,
+    "checkJs": false,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
+    "exactOptionalPropertyTypes": false,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "es2021"],
-    "module": "commonjs",
+    "isolatedModules": false,
+    "lib": ["dom", "es2020"],
+    "module": "es2022",
     "moduleResolution": "node",
+    "newLine": "lf",
     "noEmit": true,
+    "noEmitOnError": true,
+    "noErrorTruncation": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "outDir": "dist",
     "paths": {
-      "@dtag": ["packages/dtag/src/index.ts"],
-      "@dtag/*": ["packages/dtag/src/*"],
-      "@flex-development/dtag": ["packages/dtag/src/index.ts"],
-      "@flex-development/dtag/*": ["packages/dtag/src/*"],
-      "@flex-development/grease": [
-        "node_modules/@flex-development/grease/cjs/index"
-      ],
-      "@flex-development/grease/*": [
-        "node_modules/@flex-development/grease/cjs/*"
-      ],
-      "@tests/fixtures/*": ["__tests__/__fixtures__/*"],
-      "@tests/*": ["__tests__/*"]
+      "@flex-development/dtag": ["src/index"],
+      "@flex-development/dtag/*": ["src/*"],
+      "fixtures/*": ["__fixtures__/*"],
+      "src": ["src/index"],
+      "src/*": ["src/*"],
+      "tests/*": ["__tests__/*"]
     },
     "preserveConstEnums": true,
+    "preserveSymlinks": true,
     "pretty": true,
     "resolveJsonModule": true,
     "rootDir": "./",
-    "sourceMap": false,
-    "strictPropertyInitialization": false,
-    "suppressImplicitAnyIndexErrors": true,
+    "skipLibCheck": true,
     "strict": true,
-    "target": "es2021"
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es2020",
+    "useDefineForClassFields": true,
+    "useUnknownInCatchVariables": true
   },
-  "exclude": ["**/build", "**/node_modules"],
-  "files": ["typings/jest.d.ts"],
+  "exclude": ["./coverage", "./dist", "./node_modules"],
   "include": [
-    "__mocks__",
-    "__tests__",
-    "docs",
-    "packages",
-    "scripts",
-    "typings",
-    "*.js",
-    "*.ts"
-  ]
+    "**/**/*.cjs",
+    "**/**/*.cts",
+    "**/**/*.mjs",
+    "**/**/*.ts",
+    "**/**/.*.cjs",
+    "**/**/.*.ts"
+  ],
+  // SEE: https://typestrong.org/ts-node/docs/configuration
+  "ts-node": {
+    "compilerOptions": {},
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "moduleTypes": {
+      ".commitlintrc.ts": "cjs"
+    },
+    "require": ["./helpers/tsconfig-paths.cjs"],
+    "transpileOnly": true
+  }
 }

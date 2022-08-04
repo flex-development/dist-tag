@@ -1,0 +1,69 @@
+# Integrity Check
+#
+# References:
+#
+# - https://github.com/actions/checkout
+# - https://github.com/actions/setup-node
+# - https://github.com/actions/cache
+
+---
+name: integrity
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    paths:
+      - .github/workflows/**
+      - .yarnrc.yml
+      - yarn.lock
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/**
+      - .yarnrc.yml
+      - yarn.lock
+  workflow_dispatch:
+jobs:
+  integrity-check:
+    runs-on: ubuntu-latest
+    env:
+      GH_PAT: ${{ secrets.PAT_GPR_ADMIN }}
+      NODE_AUTH_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN_ADMIN }}
+    strategy:
+      matrix:
+        node: [16.16.0]
+    steps:
+      - id: checkout
+        name: Checkout branch
+        uses: actions/checkout@v3
+      - id: node
+        name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          scope: '@${{ github.repository_owner }}'
+      # why not setup-node 2.2+ cache option (yet)?
+      # see: https://github.com/belgattitude/nextjs-monorepo-example/pull/369
+      - id: yarn-cache-dir-path
+        name: Get yarn cache directory path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - id: yarn-cache
+        name: Restore yarn cache
+        uses: actions/cache@v3
+        with:
+          key: yarn-cache-folder-${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          restore-keys: |
+            yarn-cache-folder-
+      - id: yarn-install
+        name: Install dependencies
+        run: yarn --immutable
+        env:
+          HUSKY: 0
+      - id: dedupe-check
+        name: Check for duplicate dependencies in lock file
+        run: yarn dedupe --check

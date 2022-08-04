@@ -1,30 +1,68 @@
-# :bookmark: dtag
+# dtag
 
-Distribution tag lookup utility
+[![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![npm](https://img.shields.io/npm/v/@flex-development/dtag.svg)](https://npmjs.com/package/@flex-development/dtag)
+[![license](https://img.shields.io/github/license/flex-development/dtag.svg)](LICENSE.md)
+[![typescript](https://badgen.net/badge/-/typescript?color=2a72bc&icon=typescript&label)](https://typescriptlang.org)
 
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
-[![TypeScript](https://badgen.net/badge/-/typescript?icon=typescript&label)](https://www.typescriptlang.org/)
-[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+> [Distribution tag][1] lookup utility for Node.js and CLI environments.
 
-## Overview
+## Install
 
-[Getting Started](#getting-started)  
-[Usage](#usage)  
-[Contributing](CONTRIBUTING.md)
+```sh
+yarn add @flex-development/dtag
+```
 
-## Getting Started
+### GitHub Package Registry
 
-`dtag` is a [distribution tag][1] utility for Node.js and CLI environments.
+To install from the GitHub Package Registry, setup a `.npmrc` or `.yarnrc.yml`
+file to authenticate with the registry. A [Personal Access Token with at least
+the `read:packages` scope][2] is required.
 
-Assuming a [distribution (dist) tag][1] is included in package version or
-release tag (e.g `3.13.98-dev.640`, `foo-package@26.0.0-alpha.1`), `dtag` helps
-maintainers lookup and interpolate distribution tags.
+#### `.npmrc`
+
+```utf-8
+//npm.pkg.github.com/:_authToken=${GH_PAT}
+@flex-development:registry=https://npm.pkg.github.com/
+```
+
+#### `.yarnrc.yml`
+
+```yaml
+npmRegistries:
+  //npm.pkg.github.com:
+    npmAlwaysAuth: true
+    npmAuthToken: ${GH_PAT}
+
+npmScopes:
+  flex-development:
+    npmRegistryServer: https://npm.pkg.github.com
+```
+
+### Git
+
+For details on requesting a specific branch, commit, or tag, see
+[npm-install][3] or [Git - Protocols | Yarn][4].
+
+#### NPM
+
+```sh
+npm i flex-development/dtag
+```
+
+#### Yarn
+
+```sh
+yarn add @flex-development/dtag@flex-development/dtag
+```
 
 ## Usage
 
-This project is organized as a monorepo. For detailed usage instructions, see
-one of the project workspaces below:
+**TODO**: Update documentation.
 
-- [@flex-development/dtag](packages/dtag/README.md#usage)
-
-[1]: https://docs.npmjs.com/cli/v7/commands/npm-dist-tag
+[1]: https://docs.npmjs.com/cli/v8/commands/npm-dist-tag
+[2]:
+  https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries
+[3]: https://docs.npmjs.com/cli/v8/commands/npm-install#description
+[4]: https://yarnpkg.com/features/protocols#git

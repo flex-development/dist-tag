@@ -2,7 +2,7 @@
 name: Bug report
 about: Spot an error? Create a bug report
 title: '🐛 '
-labels: 'type:fix,status:needs-triage'
+labels: 'status:needs-triage,type:fix'
 assignees: ''
 ---
 
@@ -29,18 +29,31 @@ assignees: ''
 
 ## Environment
 
-<!-- If applicable, add screenshots to help explain your problem. -->
+<!--
+Environment details. Put "N/A" where details are not applicable.
 
-- `dtag` version(s): [e.g. `v6.0.0`, `v8.0.0`, `master`]
-- Node / package manager version: [e.g. Node 15 / yarn `1.22.10`]
-- OS: [e.g. `iOS`, `OSX 10.13.4`, `Windows 10`]
+Example:
+
+- Browser: `Firefox Developer Edition 93.0b7`
+- Node Version: `v16.6.0`
+- OS: `macOS v11.3.1`
+- Package Manager: `yarn@4.0.0-rc.14`
+- Package Version(s): `<=1.1.0`
+-->
+
+- Node Version: ``
+- OS: ``
+- Package Manager: ``
+- Package Version(s): ``
 
 ## Possible solution
 
-<!--
-A clear and concise description of what you think may solve the problem.
--->
+<!-- A clear and concise description of what you think may solve the problem. -->
 
 ## Additional context
 
 <!-- Add any other details about the problem here. -->
+
+-
+-
+-

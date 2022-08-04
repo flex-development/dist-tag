@@ -1,155 +1,157 @@
-# Repository Labels
+# REPOSITORY LABELS
 
-# Default GitHub labels
-
-- name: good first issue
-  description: Good for first-time contributors
-  color: 586069
-
-# Type labels
-# Types of issues, pull requests, and discussions.
-
-- name: type:build
-  description: Build system or external dependencies
-  color: 0052cc
-
-- name: type:chore
-  description: Housekeeping tasks / changes that don't impact external users
-  color: 0052cc
-
-- name: type:discussion
-  description: Discussion topic
-  color: 0052cc
-
-- name: type:docs
-  description: Improvements or additions to documentation
-  color: 0052cc
-
-- name: type:feat
-  description: New feature or request
-  color: 0052cc
-
-- name: type:fix
-  description: Something isn't working
-  color: 0052cc
-
-- name: type:perf
-  description: Performance updates
-  color: 0052cc
-
-- name: type:question
-  description: Questions
-  color: 0052cc
-
-- name: type:refactor
-  description: Code improvements
-  color: 0052ccx
-
-# Status labels
-# Current state of an issue, pull request, or discussion.
-
-- name: status:awaiting-answers
-  description: Needs clarification or more information from author
-  color: e7034b
-
-- name: status:blocked
-  description: Blocked by other work tracked in different issue
-  color: e7034b
-
-- name: status:cannot-reproduce
-  description: Bug report cannot be reproduced
-  color: e7034b
-
-- name: status:fixed
-  description: Fixed and merged into next, but not yet released
-  color: e7034b
-
-- name: status:has-pr
-  description: Has ongoing work in an open pull request
-  color: e7034b
-
-- name: status:help-wanted
-  description: Extra attention is needed
-  color: e7034b
-
-- name: status:icebox
-  description: Changes that won't be implemented
-  color: e7034b
-
-- name: status:invalid
-  description: No action to be taken or missing information
-  color: e7034b
-
-- name: status:merged
-  description: Merged into next, but not into main (or released)
-  color: e7034b
-
-- name: status:needs-triage
-  description: Needs verification and minimal reproduction
-  color: e7034b
-
-- name: status:released
-  description: Merged into next, main, and released
-  color: e7034b
-
-- name: status:stale
-  description: Superseded by different issue, pull request, or discussion
-  color: e7034b
-
-- name: status:wip
-  description: Work in progress
-  color: e7034b
-
-# Flag labels
-# Indicates additional work is needed.
+# flag labels
+# indicate additional work is needed
 
 - name: flag:breaking-change
-  description: Contains changes that require major version bump
+  description: contains changes that require major version bump
   color: fbca04
 
 - name: flag:duplicate
-  description: Issue, pull request, or discussion already exists
+  description: issue, pull request, or discussion already exists
   color: fbca04
 
 - name: flag:needs-discussion
-  description: Discussion required before implementation
+  description: discussion required before implementation
   color: fbca04
 
 - name: flag:needs-docs
-  description: Missing documentation or needs existing documentation update
+  description: missing documentation or needs existing documentation update
   color: fbca04
 
 - name: flag:needs-refactor
-  description: Code improvements required before being merged
+  description: code improvements required before being merged
   color: fbca04
 
-# Scope labels
-# Project-specific groups for issues, pull requests, and discussions.
+# scope labels
+# project-specific groups for issues, pull requests, and discussions
 
 - name: scope:cli
-  description: CLI application
+  description: cli application
   color: 74cefc
 
-- name: scope:deploy-release
-  description: Package deployment and release tasks
+- name: scope:cjs
+  description: commonjs
   color: 74cefc
 
 - name: scope:deps
-  description: Dependency updates
+  description: dependency updates
+  color: 74cefc
+
+- name: scope:esm
+  description: es modules
   color: 74cefc
 
 - name: scope:node
-  description: Node.js program
+  description: node.js program
   color: 74cefc
 
-- name: scope:scripts
-  description: Project scripts (not source code)
+- name: scope:options
+  description: options
   color: 74cefc
 
-- name: scope:tests
-  description: Testing
+- name: scope:release
+  description: package release
   color: 74cefc
 
 - name: scope:typescript
-  description: TypeScript support (enums, interfaces, types)
+  description: typescript support
   color: 74cefc
+
+# status labels
+# current state of an issue, pull request, or discussion
+
+- name: status:awaiting-answers
+  description: needs clarification or more information from author
+  color: e7034b
+
+- name: status:blocked
+  description: blocked by other work tracked in different issue
+  color: e7034b
+
+- name: status:cannot-reproduce
+  description: bug report cannot be reproduced
+  color: e7034b
+
+- name: status:fixed
+  description: fixed, but not released
+  color: e7034b
+
+- name: status:help-wanted
+  description: extra attention is needed
+  color: e7034b
+
+- name: status:icebox
+  description: changes that won't be implemented
+  color: e7034b
+
+- name: status:invalid
+  description: no action to be taken or missing information
+  color: e7034b
+
+- name: status:merged
+  description: merged, but not released
+  color: e7034b
+
+- name: status:needs-triage
+  description: needs verification and minimal reproduction
+  color: e7034b
+
+- name: status:released
+  description: merged and released
+  color: e7034b
+
+- name: status:stale
+  description: superseded by different issue, pull request, or discussion
+  color: e7034b
+
+- name: status:wip
+  description: work in progress
+  color: e7034b
+
+# type labels
+# types of issues, pull requests, and discussions
+
+- name: type:build
+  description: build system or external dependencies
+  color: 0052cc
+
+- name: type:chore
+  description: housekeeping tasks / changes that don't impact external users
+  color: 0052cc
+
+- name: type:ci
+  description: continuous integration and deployment
+  color: 0052cc
+
+- name: type:discussion
+  description: discussion topic
+  color: 0052cc
+
+- name: type:docs
+  description: improvements or additions to documentation
+  color: 0052cc
+
+- name: type:feat
+  description: new feature or request
+  color: 0052cc
+
+- name: type:fix
+  description: something isn't working
+  color: 0052cc
+
+- name: type:perf
+  description: performance updates
+  color: 0052cc
+
+- name: type:question
+  description: questions
+  color: 0052cc
+
+- name: type:refactor
+  description: code improvements
+  color: 0052cc
+
+- name: type:task
+  description: project task
+  color: 0052cc

@@ -1,99 +1,149 @@
 {
-  "name": "@flex-development/p013",
+  "name": "@flex-development/dtag",
   "description": "Distribution tag lookup utility",
-  "keywords": [],
+  "version": "1.0.0",
+  "keywords": [
+    "dist-tag",
+    "typescript"
+  ],
+  "license": "BSD-3-Clause",
   "homepage": "https://github.com/flex-development/dtag",
-  "repository": "git://github.com/flex-development/dtag.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flex-development/dtag.git"
+  },
   "bugs": {
     "url": "https://github.com/flex-development/dtag/issues"
   },
   "author": {
     "name": "Lexus Drumgold",
-    "email": "unicornware@flexdevlopment.llc",
     "url": "https://github.com/unicornware"
   },
+  "publishConfig": {
+    "access": "public",
+    "directory": "./"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "bin": "dist/cli.cjs",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./main": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/main.mjs",
+      "require": "./dist/main.cjs"
+    },
+    "./options": {
+      "types": "./dist/options.d.ts",
+      "import": "./dist/options.mjs",
+      "require": "./dist/options.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "clean": "rimraf node_modules",
-    "prepare": "yarn workspaces foreach -itv run prepare",
-    "postinstall": "husky-run install",
-    "bootstrap": "yarn; yarn prepare",
+    "build": "unbuild",
+    "check:ci": "yarn fix:cg && yarn check:spelling && yarn check:types && yarn test && NODE_ENV=production yarn pack -o %s-%v.tgz && yarn clean:pack",
     "check:format": "prettier --check .",
-    "check:style": "eslint . --ext md,js,ts",
+    "check:lint": "eslint --cache --exit-on-fatal-error --ext cjs,cts,json,md,mjs,ts,yml --max-warnings 0 .",
+    "check:spelling": "cspell lint --color --no-progress --relative $@ \"**\"",
+    "check:types": "NODE_OPTIONS='--es-module-specifier-resolution=node --loader=./loader' tsc -p tsconfig.json",
+    "check:upgrades": "yarn upgrade-interactive",
+    "clean:build": "trash ./{dist,*.tgz}",
+    "clean:modules": "trash ./.yarn/{cache,*.gz} ./node_modules",
+    "clean:pack": "trash ./*.tgz",
+    "clean:test": "trash ./coverage",
+    "conventional-changelog": "ts-node ./node_modules/.bin/conventional-changelog -n ./changelog.config.cts",
+    "fix:cg": "yarn fix:format && yarn fix:lint",
+    "fix:dedupe": "yarn dedupe --strategy=highest",
     "fix:format": "prettier --write .",
-    "fix:style": "yarn check:style --fix --cache",
-    "test": "bash scripts/jest.sh",
-    "test:node": "yarn workspace @flex-development/dtag test",
-    "build:node": "yarn workspace @flex-development/dtag build",
-    "release:node": "yarn workspace  @flex-development/dtag release"
+    "fix:lint": "yarn check:lint --fix",
+    "postinstall": "chmod +x .husky/* && husky install",
+    "postpack": "toggle-scripts +postinstall",
+    "postpublish": "toggle-scripts +prepack",
+    "prepack": "toggle-scripts -postinstall && yarn build",
+    "prepublishOnly": "toggle-scripts -prepack",
+    "release": "bash ./scripts/release.sh",
+    "test": "NODE_ENV=test ts-node ./node_modules/.bin/vitest run",
+    "test:cov": "yarn test --coverage",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "mri": "1.2.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "7.14.7",
-    "@commitlint/cli": "13.0.0",
-    "@commitlint/config-conventional": "13.0.0",
-    "@commitlint/format": "13.0.0",
-    "@flex-development/grease": "1.0.2",
-    "@types/fs-extra": "9.0.11",
-    "@types/jest": "26.0.23",
-    "@types/lodash": "4.14.172",
-    "@types/mvdan-sh": "0.5.0",
-    "@types/node": "15.12.5",
-    "@types/rimraf": "2.0.4",
-    "@types/shelljs": "0.8.8",
-    "@typescript-eslint/eslint-plugin": "4.28.0",
-    "@typescript-eslint/parser": "4.28.0",
-    "@zerollup/ts-transform-paths": "1.7.18",
-    "chalk-cli": "4.1.0",
-    "copyfiles": "2.4.1",
-    "dotenv-cli": "4.0.0",
-    "eslint": "7.29.0",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-import": "2.23.4",
-    "eslint-plugin-jest": "24.3.6",
-    "eslint-plugin-jsdoc": "36.0.6",
-    "eslint-plugin-markdown": "2.2.0",
+    "@commitlint/cli": "17.0.3",
+    "@commitlint/config-conventional": "17.0.3",
+    "@commitlint/types": "17.0.0",
+    "@faker-js/faker": "7.3.0",
+    "@flex-development/tutils": "5.0.0-dev.1",
+    "@types/chai": "4.3.1",
+    "@types/conventional-changelog": "3.1.1",
+    "@types/conventional-changelog-config-spec": "2.1.1",
+    "@types/conventional-changelog-writer": "4.0.1",
+    "@types/conventional-commits-parser": "3.0.2",
+    "@types/eslint": "8.4.5",
+    "@types/git-raw-commits": "2.0.1",
+    "@types/is-ci": "3.0.0",
+    "@types/node-notifier": "8.0.2",
+    "@types/prettier": "2.6.4",
+    "@typescript-eslint/eslint-plugin": "5.32.0",
+    "@typescript-eslint/parser": "5.32.0",
+    "@vates/toggle-scripts": "1.0.0",
+    "@vitest/ui": "0.20.3",
+    "c8": "7.12.0",
+    "chai": "4.3.6",
+    "conventional-changelog-cli": "2.2.2",
+    "cspell": "6.5.0",
+    "eslint": "8.21.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-chai-expect": "3.0.0",
+    "eslint-plugin-jest-formatting": "3.1.0",
+    "eslint-plugin-jsdoc": "39.3.4",
+    "eslint-plugin-jsonc": "2.3.1",
+    "eslint-plugin-markdown": "3.0.0",
+    "eslint-plugin-markdownlint": "0.4.0",
     "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-prettier": "3.4.0",
-    "eslint-plugin-spellcheck": "0.0.19",
-    "eslint-plugin-tree-shaking": "1.9.2",
-    "fs-extra": "10.0.0",
-    "husky": "4.3.8",
-    "jest": "27.0.6",
-    "jest-extended": "0.11.5",
-    "jest-github-reporter": "1.0.2",
-    "jest-mock-console": "1.1.0",
-    "lint-staged": "11.0.0",
-    "mkdirp": "0.5.5",
-    "npm": "7.19.0",
-    "npm-run-all": "4.1.5",
-    "prettier": "2.3.2",
-    "prettier-plugin-sh": "0.7.0",
-    "replace-in-file": "6.2.0",
-    "rimraf": "3.0.2",
-    "ts-jest": "27.0.4",
-    "ts-node": "10.1.0",
-    "tsconfig-paths": "3.9.0",
-    "ttypescript": "1.5.12",
-    "typescript": "4.3.4"
-  },
-  "engines": {
-    "yarn": "3.0.0-rc.2"
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-promise": "6.0.0",
+    "eslint-plugin-react": "7.30.1",
+    "eslint-plugin-unicorn": "43.0.2",
+    "eslint-plugin-yml": "1.1.0",
+    "growl": "1.10.5",
+    "husky": "8.0.1",
+    "is-ci": "3.0.1",
+    "jsonc-eslint-parser": "2.1.0",
+    "lint-staged": "13.0.3",
+    "node-notifier": "10.0.1",
+    "prettier": "2.7.1",
+    "prettier-plugin-sh": "0.12.8",
+    "pretty-format": "28.1.3",
+    "resolve-tspaths": "0.7.4",
+    "trash-cli": "5.0.0",
+    "ts-dedent": "2.2.0",
+    "ts-node": "10.9.1",
+    "tsconfig": "7.0.0",
+    "tsconfig-paths": "4.0.0",
+    "unbuild": "0.7.6",
+    "version-bump-prompt": "6.1.0",
+    "vite-tsconfig-paths": "3.5.0",
+    "vitest": "0.20.3",
+    "vitest-github-actions-reporter": "0.8.1",
+    "yaml-eslint-parser": "1.1.0"
   },
   "resolutions": {
-    "read-pkg": "5.2.0"
+    "mkdist": "patch:mkdist@npm:0.3.13#.yarn/patches/mkdist-npm-0.3.13-c41cf41c68.patch",
+    "typescript": "4.8.0-beta",
+    "vite": "3.0.4"
   },
-  "env": {
-    "optional": [
-      "DEBUG",
-      "DEBUG_COLORS"
-    ],
-    "required": [
-      "NPM_TOKEN_FLDV",
-      "PAT_GPR_FLDV",
-      "PROJECT_CWD"
-    ]
-  },
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ]
+  "packageManager": "yarn@4.0.0-rc.14",
+  "readme": "README.md"
 }
