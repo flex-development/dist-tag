@@ -5,8 +5,10 @@
  */
 
 import type { Config } from 'conventional-changelog-cli'
+import type { Options } from 'conventional-changelog-core'
 import type { CommitGroup } from 'conventional-changelog-writer'
-import type { Commit } from 'conventional-commits-parser'
+import type { Commit, CommitRaw } from 'conventional-commits-parser'
+import dateformat from 'dateformat'
 import pkg from './package.json'
 
 /**
@@ -42,7 +44,28 @@ const config: Config = {
         { hidden: true, type: 'wip' }
       ]
     },
-    skipUnstable: false
+    skipUnstable: false,
+    /**
+     * Raw commit transformer.
+     *
+     * @see https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-core#transform-1
+     *
+     * @param {CommitRaw} commit - Raw commit object
+     * @param {Options.Transform.Callback} apply - Commit handler
+     * @return {void} Nothing when complete
+     */
+    transform(commit: CommitRaw, apply: Options.Transform.Callback): void {
+      return void apply(null, {
+        ...commit,
+        committerDate: dateformat(commit.committerDate, 'yyyy-mm-dd', true),
+        notes: commit.notes.map(note => ({
+          ...note,
+          text: note.text.replace(/(\n?Signed-off-by:).+/gm, '')
+        })),
+        raw: commit,
+        shortHash: commit.hash.slice(0, 7)
+      })
+    }
   },
   parserOpts: {
     issuePrefixesCaseSensitive: true
