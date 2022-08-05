@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_PAT: ${{ secrets.PAT_GPR_ADMIN }}
+      HUSKY: 0
       NODE_AUTH_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN_ADMIN }}
     strategy:
@@ -38,9 +39,12 @@ jobs:
           scope: '@${{ github.repository_owner }}'
       - id: yarn
         name: Install dependencies
+        if: github.actor != 'dependabot[bot]'
         run: yarn --immutable
-        env:
-          HUSKY: 0
+      - id: yarn-dependabot
+        name: Install dependencies
+        if: github.actor == 'dependabot[bot]'
+        run: yarn --mode=update-lockfile
       - id: format
         name: Check code formatting
         run: yarn check:format
