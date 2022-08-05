@@ -86,7 +86,16 @@ If you installed `dtag` locally, you may need to update your `PATH`:
 
 ### Node.js
 
-**TODO**: Update documentation.
+```typescript
+import dtag from '@flex-development/dtag'
+
+console.log(dtag()) // ''
+console.log(dtag({ target: '2.0.0' })) // ''
+console.log(dtag({ target: '2.0.0-alpha.1' })) // 'alpha'
+console.log(dtag({ prefix: '@', target: 'foo-package@2.0.0-beta.1' })) // 'beta'
+```
+
+Options can be viewed [here](src/options.ts).
 
 [1]: https://docs.npmjs.com/cli/v8/commands/npm-dist-tag
 [2]:
