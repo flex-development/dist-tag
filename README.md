@@ -59,6 +59,33 @@ yarn add @flex-development/dtag@flex-development/dtag
 
 ## Usage
 
+### CLI
+
+```sh
+Usage
+  $ dtag [target] [options]
+
+Options
+  -p, --prefix Git tag prefix
+  -v, --version Displays current version
+  -h, --help Displays this message
+
+Examples
+  $ dtag                                                 # ''
+  $ dtag 2.0.0                                           # ''
+  $ dtag 2.0.0-alpha.1                                   # 'alpha'
+  $ dtag foo-package@2.0.0-beta.1 --prefix @             # 'beta'
+  $ dtag $(git describe --tags --abbrev=0) -p @          # depends on the tag 😉
+```
+
+If you installed `dtag` locally, you may need to update your `PATH`:
+
+```sh
+[ -d $PWD/node_modules/.bin ] && export PATH=$PWD/node_modules/.bin:$PATH
+```
+
+### Node.js
+
 **TODO**: Update documentation.
 
 [1]: https://docs.npmjs.com/cli/v8/commands/npm-dist-tag
