@@ -12,8 +12,7 @@
 name: dependabot-auto-merge
 on: pull_request_target
 jobs:
-  auto:
-    name: Auto approve pull request, then squash and merge
+  dependabot-auto:
     if: github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
