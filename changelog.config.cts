@@ -42,8 +42,7 @@ const config: Config = {
         { hidden: true, type: 'wip' }
       ]
     },
-    skipUnstable: false,
-    tagPrefix: '@'
+    skipUnstable: false
   },
   parserOpts: {
     issuePrefixesCaseSensitive: true
