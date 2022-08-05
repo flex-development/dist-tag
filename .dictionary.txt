@@ -18,6 +18,7 @@ fbca
 fpnv
 gpgsign
 iife
+jsdevtools
 lcov
 lintstagedrc
 micnncim
@@ -31,6 +32,7 @@ pdel
 rickstaa
 safecrlf
 syncer
+totalist
 tsnode
 tspaths
 vates

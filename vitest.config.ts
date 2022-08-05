@@ -42,7 +42,8 @@ const config = (): UserConfig => {
           '**/__tests__/**',
           '**/index.ts',
           'src/flags.ts',
-          'src/options.ts'
+          'src/options.ts',
+          'src/pkg.ts'
         ],
         extension: ['.ts'],
         include: ['src'],

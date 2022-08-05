@@ -5,6 +5,7 @@
  */
 
 import type { MkdistOptions } from 'mkdist'
+import fs from 'node:fs'
 import path from 'node:path'
 import { applyChanges } from 'resolve-tspaths/dist/steps/applyChanges'
 import { computeAliases } from 'resolve-tspaths/dist/steps/computeAliases'
@@ -12,6 +13,7 @@ import { generateChanges } from 'resolve-tspaths/dist/steps/generateChanges'
 import { getFilesToProcess } from 'resolve-tspaths/dist/steps/getFilesToProcess'
 import { loadTSConfig } from 'resolve-tspaths/dist/steps/loadTSConfig'
 import type { Alias, Change, TextChange } from 'resolve-tspaths/dist/types'
+import { totalist } from 'totalist'
 import {
   defineBuildConfig,
   type BuildConfig,
@@ -54,7 +56,11 @@ const config: BuildConfig = defineBuildConfig({
         /** @const {Alias[]} aliases - Path alias objects */
         const aliases: Alias[] = computeAliases(rootDir, paths)
 
-        /** @const {Change[]} changes - Changes to apply to build files */
+        /**
+         * Changes to apply to build files.
+         *
+         * @const {Change[]} changes
+         */
         const changes: Change[] = generateChanges(files, aliases, {
           outPath: outDir,
           srcPath: path.resolve('src')
@@ -91,12 +97,54 @@ const config: BuildConfig = defineBuildConfig({
       }
     },
     /**
+     * Applies updates to build files by `entry`.
+     *
+     * This includes:
+     *
+     * - Fixing shebang usage in `cjs` files
+     *
+     * @async
+     *
+     * @param {BuildContext} ctx - Build context
+     * @param {BuildOptions} ctx.options - Build options
+     * @param {MkdistBuildEntry} entry - Build entry (`mkdist`)
+     * @return {Promise<void>} Nothing when complete
+     */
+    async 'mkdist:entry:build'(
+      ctx: BuildContext,
+      entry: MkdistBuildEntry
+    ): Promise<void> {
+      /**
+       * Changes to apply to cjs build files.
+       *
+       * @const {Change[]} changes
+       */
+      const changes: Change[] = []
+
+      try {
+        await totalist(ctx.options.outDir, (_, abs: string): void => {
+          if (entry.format === 'cjs') {
+            changes.push({
+              file: abs,
+              text: fs
+                .readFileSync(abs, 'utf8')
+                .replace('// #!/usr/bin/env', '#!/usr/bin/env')
+            })
+          }
+        })
+
+        return void applyChanges(changes)
+      } catch (e: unknown) {
+        console.error(e instanceof Error ? e.message : e)
+      }
+    },
+    /**
      * Updates `mkdist` build options.
      *
      * @see https://github.com/unjs/mkdist#-usage
      *
      * @param {BuildContext} _ - Build context
-     * @param {MkdistBuildEntry} __ - `mkdist` build entry
+     * @param {MkdistBuildEntry} __ - Build entry (`mkdist`)
      * @param {MkdistOptions} options - `mkdist` build options
      * @return {void} Nothing when complete
      */

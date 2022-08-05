@@ -20,6 +20,12 @@ const config = {
       }
     },
     {
+      files: ['src/cli.ts'],
+      rules: {
+        'node/no-process-exit': 0
+      }
+    },
+    {
       files: ['src/index.ts'],
       rules: {
         /**

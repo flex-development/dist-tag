@@ -20,9 +20,9 @@
 yarn test
 bump $@
 yarn conventional-changelog -i CHANGELOG.md -s
-VERSION=$(fx package.json '.version')
+VERSION=$(fx package.json .version)
 RELEASE_BRANCH=release/$VERSION
 git switch -c $RELEASE_BRANCH
 git add CHANGELOG.md package.json
-git commit -s -m "release: $(fx package.json '.name')@$VERSION" --no-verify
+git commit -s -m "release: $(fx package.json .name)@$VERSION" --no-verify
 git push origin -u --no-verify $RELEASE_BRANCH
