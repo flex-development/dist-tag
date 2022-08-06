@@ -1,7 +1,7 @@
 {
   "name": "@flex-development/dtag",
   "description": "Distribution tag lookup utility",
-  "version": "1.0.0",
+  "version": "2.0.0-alpha.1",
   "keywords": [
     "dist-tag",
     "typescript"
