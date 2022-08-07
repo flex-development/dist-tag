@@ -19,20 +19,19 @@ import type Options from './options'
  * @example
  *  lookup({ target: '3.13.98-dev.640' }) // 'dev'
  * @example
- *  lookup({ prefix: '@', target: 'foo-package@1.2.0-alpha.1' }) // 'alpha'
+ *  lookup({ delimiter: '@', target: 'foo-package@1.2.0-alpha.1' }) // 'alpha'
  *
  * @param {Options} [options] - Dist tag lookup options
- * @param {string} [options.prefix] - Git tag prefix
+ * @param {string} [options.delimiter] -  Lookup target separator
  * @param {string} [options.target] - Lookup target
  * @return {string} Dist tag or empty string
  */
-const lookup = ({ prefix, target }: Options = {}): string => {
+const lookup = ({ delimiter, target }: Options = {}): string => {
   // do nothing if missing lookup target
   if (target === undefined || !target.trim()) return ''
 
-  // split target at git tag prefix
-  // assume last array element is version to perform lookup on
-  if (prefix) target = target.split(prefix).pop()
+  // split target at delimiter
+  if (delimiter !== undefined) target = target.split(delimiter).pop()
 
   return target ? /([a-z]+)/.exec(target)?.[0]!.trim() ?? '' : ''
 }

@@ -8,9 +8,15 @@
  */
 interface Options {
   /**
-   * Git tag prefix.
+   * Lookup {@link target} separator.
+   *
+   * If defined, `target` will be split into substrings. The **last** element in
+   * the resulting array will become the new lookup target.
+   *
+   * @example
+   *  '@' // target === 'foo-package@1.2.0-alpha.1'
    */
-  prefix?: string
+  delimiter?: RegExp | string
 
   /**
    * Lookup target.

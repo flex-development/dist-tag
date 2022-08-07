@@ -16,8 +16,8 @@ describe('unit:cli', () => {
     { expected: '', parameters: [] },
     { expected: '', parameters: ['2.3.4'] },
     { expected: 'dev', parameters: ['2.3.4-dev.1'] },
-    { expected: 'alpha', parameters: ['foo@2.3.4-alpha.1', '--prefix=@'] },
-    { expected: 'beta', parameters: ['foo-package@2.3.4-beta.1', '-p=@'] }
+    { expected: 'alpha', parameters: ['foo@2.3.4-alpha.1', '--delimiter=@'] },
+    { expected: 'beta', parameters: ['foo-package@2.3.4-beta.1', '-d=@'] }
   ]
 
   cases.forEach(({ expected, parameters }) => {

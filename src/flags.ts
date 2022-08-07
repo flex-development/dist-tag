@@ -11,8 +11,8 @@ import type Options from './options'
  * @extends {Omit<Options, 'target'>}
  */
 interface Flags extends Omit<Options, 'target'> {
-  /** @see {@link Options.prefix}. */
-  p?: Options['prefix']
+  /** @see {@link Options.delimiter}. */
+  d?: Options['delimiter']
 }
 
 export { type Flags as default }

@@ -12,11 +12,11 @@ describe('unit:node', () => {
   const cases: Case[] = [
     { expected: '', parameters: [] },
     { expected: '', parameters: [{ target: '1.0.0' }] },
-    { expected: '', parameters: [{ prefix: '@', target: 'foo@' }] },
+    { expected: '', parameters: [{ delimiter: '@', target: 'foo@' }] },
     { expected: 'dev', parameters: [{ target: '3.13.98-dev.640' }] },
     {
       expected: 'alpha',
-      parameters: [{ prefix: '@', target: 'foo-package@1.2.0-alpha.1' }]
+      parameters: [{ delimiter: '@', target: 'foo-package@1.2.0-alpha.1' }]
     }
   ]
 

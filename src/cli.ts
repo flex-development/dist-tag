@@ -25,11 +25,11 @@ program
   .describe(description)
   .example('2.0.0')
   .example('2.0.0-alpha.1')
-  .example('foo-package@2.0.0-beta.1 --prefix @')
-  .example('$(git describe --tags --abbrev=0) -p @')
-  .option('--prefix, -p', 'Git tag prefix')
-  .action((target: string, { prefix }: mri.Argv<Flags>): void => {
-    console.log(lookup({ prefix, target }))
+  .example('foo-package@2.0.0-beta.1 --delimiter @')
+  .example('$(git describe --tags --abbrev=0) -d @')
+  .option('--delimiter, -d', 'Lookup target separator')
+  .action((target: string, { delimiter }: mri.Argv<Flags>): void => {
+    console.log(lookup({ delimiter, target }))
     process.exit(0)
   })
   .parse(process.argv)

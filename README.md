@@ -66,7 +66,7 @@ Usage
   $ dtag [target] [options]
 
 Options
-  -p, --prefix Git tag prefix
+  -d, --delimiter Lookup target separator
   -v, --version Displays current version
   -h, --help Displays this message
 
@@ -74,8 +74,8 @@ Examples
   $ dtag                                                 # ''
   $ dtag 2.0.0                                           # ''
   $ dtag 2.0.0-alpha.1                                   # 'alpha'
-  $ dtag foo-package@2.0.0-beta.1 --prefix @             # 'beta'
-  $ dtag $(git describe --tags --abbrev=0) -p @          # depends on the tag 😉
+  $ dtag foo-package@2.0.0-beta.1 --delimiter @          # 'beta'
+  $ dtag $(git describe --tags --abbrev=0) -d @          # depends on the tag 😉
 ```
 
 If you installed `dtag` locally, you may need to update your `PATH`:
@@ -92,7 +92,7 @@ import dtag from '@flex-development/dtag'
 console.log(dtag()) // ''
 console.log(dtag({ target: '2.0.0' })) // ''
 console.log(dtag({ target: '2.0.0-alpha.1' })) // 'alpha'
-console.log(dtag({ prefix: '@', target: 'foo-package@2.0.0-beta.1' })) // 'beta'
+console.log(dtag({ delimiter: '@', target: 'foo-package@2.0.0-beta.1' })) // 'beta'
 ```
 
 Options can be viewed [here](src/options.ts).
