@@ -5,10 +5,10 @@
 
 import exec from '@jsdevtools/chai-exec'
 import type { TestcaseFn } from 'tests/interfaces'
-import type dtag from '../node'
+import type lookup from '../node'
 
 describe('unit:cli', () => {
-  interface Case extends Omit<TestcaseFn<typeof dtag>, 'parameters'> {
+  interface Case extends Omit<TestcaseFn<typeof lookup>, 'parameters'> {
     parameters: typeof process['argv']
   }
 

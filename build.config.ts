@@ -5,7 +5,6 @@
  */
 
 import type { MkdistOptions } from 'mkdist'
-import fs from 'node:fs'
 import path from 'node:path'
 import { applyChanges } from 'resolve-tspaths/dist/steps/applyChanges'
 import { computeAliases } from 'resolve-tspaths/dist/steps/computeAliases'
@@ -13,7 +12,6 @@ import { generateChanges } from 'resolve-tspaths/dist/steps/generateChanges'
 import { getFilesToProcess } from 'resolve-tspaths/dist/steps/getFilesToProcess'
 import { loadTSConfig } from 'resolve-tspaths/dist/steps/loadTSConfig'
 import type { Alias, Change, TextChange } from 'resolve-tspaths/dist/types'
-import { totalist } from 'totalist'
 import {
   defineBuildConfig,
   type BuildConfig,
@@ -21,14 +19,28 @@ import {
   type BuildOptions,
   type MkdistBuildEntry
 } from 'unbuild'
+import pkg from './package.json'
 
 /** @const {BuildConfig} config - Build config */
 const config: BuildConfig = defineBuildConfig({
-  declaration: true,
+  devDependencies: Object.keys(pkg.devDependencies),
   entries: [
-    { builder: 'mkdist', input: 'src/' },
-    { builder: 'mkdist', ext: 'cjs', format: 'cjs', input: 'src/' },
-    { builder: 'mkdist', ext: 'mjs', format: 'esm', input: 'src/' }
+    {
+      builder: 'mkdist',
+      declaration: true,
+      ext: 'cjs',
+      format: 'cjs',
+      input: 'src/'
+    },
+    {
+      builder: 'mkdist',
+      declaration: true,
+      ext: 'mjs',
+      format: 'esm',
+      input: 'src/'
+    },
+    { builder: 'mkdist', declaration: true, input: 'src/' },
+    { builder: 'rollup', declaration: false, input: 'src/cli' }
   ],
   hooks: {
     /**
@@ -97,48 +109,6 @@ const config: BuildConfig = defineBuildConfig({
       }
     },
     /**
-     * Applies updates to build files by `entry`.
-     *
-     * This includes:
-     *
-     * - Fixing shebang usage in `cjs` files
-     *
-     * @async
-     *
-     * @param {BuildContext} ctx - Build context
-     * @param {BuildOptions} ctx.options - Build options
-     * @param {MkdistBuildEntry} entry - Build entry (`mkdist`)
-     * @return {Promise<void>} Nothing when complete
-     */
-    async 'mkdist:entry:build'(
-      ctx: BuildContext,
-      entry: MkdistBuildEntry
-    ): Promise<void> {
-      /**
-       * Changes to apply to cjs build files.
-       *
-       * @const {Change[]} changes
-       */
-      const changes: Change[] = []
-
-      try {
-        await totalist(ctx.options.outDir, (_, abs: string): void => {
-          if (entry.format === 'cjs') {
-            changes.push({
-              file: abs,
-              text: fs
-                .readFileSync(abs, 'utf8')
-                .replace('// #!/usr/bin/env', '#!/usr/bin/env')
-            })
-          }
-        })
-
-        return void applyChanges(changes)
-      } catch (e: unknown) {
-        console.error(e instanceof Error ? e.message : e)
-      }
-    },
-    /**
      * Updates `mkdist` build options.
      *
      * @see https://github.com/unjs/mkdist#-usage
@@ -151,6 +121,15 @@ const config: BuildConfig = defineBuildConfig({
     'mkdist:entry:options'(_, __, options: MkdistOptions): void {
       options.pattern = ['**', '!**/{__mocks__,__snapshots__,__tests__}/**']
     }
+  },
+  rollup: {
+    cjsBridge: true,
+    commonjs: { extensions: ['.cjs', '.js'] },
+    emitCJS: true,
+    esbuild: { logLevel: 'info', minify: true },
+    inlineDependencies: true,
+    json: { compact: true },
+    resolve: {}
   }
 })
 
