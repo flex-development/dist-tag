@@ -60,7 +60,7 @@ const config: Config = {
         committerDate: dateformat(commit.committerDate, 'yyyy-mm-dd', true),
         notes: commit.notes.map(note => ({
           ...note,
-          text: note.text.replace(/(\n?Signed-off-by:).+/gm, '')
+          text: note.text.replace(/(\n?\n?Signed-off-by:).+/gm, '')
         })),
         raw: commit,
         shortHash: commit.hash.slice(0, 7)

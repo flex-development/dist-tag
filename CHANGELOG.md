@@ -1,3 +1,37 @@
+## [2.0.0](https://github.com/flex-development/dtag/compare/dtag@1.0.0...dtag@2.0.0) (2022-08-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **node:** reimplement tag lookup given new `Options`
+* **options:** `Options.prefix?` -> `Options.delimiter?`
+* **options:** `Options.version?` -> `Options.target?`
+* **options:** drop `Options.map`
+* **options:** drop `Options.skip`
+
+### :package: Build
+
+* **cli:** distribute cli as bundle ([504dc86](https://github.com/flex-development/dtag/commit/504dc868157171586cd587be8d909cc792d6e172))
+
+
+### :pencil: Documentation
+
+* **cli:** usage ([ba1b176](https://github.com/flex-development/dtag/commit/ba1b176d8042dcde31db3555a9c8dcf13385eb43))
+* **node:** usage ([c554ed4](https://github.com/flex-development/dtag/commit/c554ed4fbdec89365bb9ec731971142a666d4bdc))
+
+
+### :sparkles: Features
+
+* **cli:** app ([ea0cc4f](https://github.com/flex-development/dtag/commit/ea0cc4fdc5b4a79915930c073e8a55907ba0743b))
+* **options:** `Flags` ([331450b](https://github.com/flex-development/dtag/commit/331450bfe26e1370483a34bc9860a084533a69ab))
+
+
+### :zap: Refactors
+
+* **node:** reimplement tag lookup given new `Options` ([2c935e6](https://github.com/flex-development/dtag/commit/2c935e663fe356387548144121607ee504423912))
+* **options:** improve option names ([aac302b](https://github.com/flex-development/dtag/commit/aac302bb7afa88ec1f5fd8a77626ee3607c1c07b))
+* **options:** `DistTagOptions` -> `Options` ([63f05d6](https://github.com/flex-development/dtag/commit/63f05d620b0e87f13aa4eeab7ad37e3479dc7c76))
+
 ## [2.0.0-alpha.1](https://github.com/flex-development/dtag/compare/dtag@1.0.0...dtag@2.0.0-alpha.1) (2022-08-05)
 
 
