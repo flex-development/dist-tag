@@ -3,6 +3,7 @@ autocrlf
 autosetuprebase
 bdel
 bdelr
+bdougie
 bren
 cefc
 chbb
@@ -10,6 +11,7 @@ chbf
 chbh
 chbr
 commitlintrc
+dawidd
 dedupe
 dessant
 dohm
@@ -33,7 +35,6 @@ pdel
 rickstaa
 safecrlf
 syncer
-totalist
 tsnode
 tspaths
 vates

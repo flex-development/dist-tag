@@ -330,13 +330,13 @@ e.g:
 - `perf(web): decrease page loading time #26`
 - `release: @flex-development/dist-tag@1.0.0 #13`
 
-## Releasing
+## Deployment
 
 > Note: Package and release publication is executed via GitHub workflow.\
 > This is so invalid or malicious versions cannot be published without merging those
 > changes into `main` first.
 
-Before releasing, the following steps must be completed:
+Before deploying, the following steps must be completed:
 
 1. Schedule a code freeze
 2. Decide what type of version bump the package needs
@@ -363,9 +363,9 @@ Before releasing, the following steps must be completed:
        - create and push new tag
        - create and publish github release
        - publish package to [GitHub Package Registry][17] and [NPM][18]
-   - PR reviewer should go through the PR's linked issues and:
-     - add `status:merged` label
-     - add `status:released` label
+       - add the `status:released` label to all linked issues
+       - make sure all issues with the `status:released` label are closed
+       - delete the release branch
 
 [1]: https://brew.sh
 [2]:
