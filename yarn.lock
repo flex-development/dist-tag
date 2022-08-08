@@ -951,6 +951,7 @@ __metadata:
     yaml-eslint-parser: "npm:1.1.0"
   bin:
     dist-tag: ./dist/cli.cjs
+    dist-tag-esm: ./dist/cli.mjs
   languageName: unknown
   linkType: soft
 
