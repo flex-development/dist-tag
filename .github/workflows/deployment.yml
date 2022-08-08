@@ -81,23 +81,24 @@ jobs:
           WORKSPACE: ${{ steps.workspace.outputs.workspace }}
           VERSION: ${{ steps.version.outputs.version }}
         with:
+          result-encoding: string
           script: |
             const workspace = process.env.WORKSPACE
             const version = process.env.VERSION
-            const artifact_name = workspace.replace('/', '-') + '-' + version
 
-            return './' + artifact_name + '.tgz'
+            return `./${workspace.replace('/', '-')}-${version}.tgz`
       - id: dist-tag
         name: Get dist tag
         uses: actions/github-script@v6.1.0
         env:
           VERSION: ${{ steps.version.outputs.version }}
         with:
+          result-encoding: string
           script: |
             const version = process.env.VERSION
             const tag = version.match(/(?!-)([a-z]+)/)?.[0].trim() ?? ''
 
-            return tag ? tag = `--tag ${tag}` : tag
+            return tag ? `--tag ${tag}` : ''
       - id: prerelease
         name: Check for prerelease
         uses: actions/github-script@v6.1.0
@@ -125,7 +126,7 @@ jobs:
           fetch-depth: 0
           ref: main
       - id: node
-        name: Use Node.js ${{ matrix.node-version }}
+        name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -138,7 +139,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ env.GH_PAT }}
       - id: pack
         name: Pack project
-        run: yarn pack -o %s-%v.tgz
+        run: yarn pack -o %s-%v.tgz && ls
         env:
           NODE_ENV: production
           NODE_NO_WARNINGS: 1
@@ -257,7 +258,6 @@ jobs:
           LABEL: status:released
       - id: delete-release-branch
         name: Delete branch release/${{ needs.metadata.outputs.version }}
-        if: github.event_name != 'workflow_dispatch'
         uses: dawidd6/action-delete-branch@v3.1.0
         with:
           branches: release/

@@ -6,7 +6,10 @@
 
 import type { Config } from 'conventional-changelog-cli'
 import type { Options } from 'conventional-changelog-core'
-import type { CommitGroup } from 'conventional-changelog-writer'
+import type {
+  CommitGroup,
+  GeneratedContext
+} from 'conventional-changelog-writer'
 import type { Commit, CommitRaw } from 'conventional-commits-parser'
 import dateformat from 'dateformat'
 import pkg from './package.json'
@@ -117,6 +120,18 @@ const config: Config = {
       return a.header && b.header
         ? a.header.localeCompare(b.header) || by_date
         : by_date
+    },
+    /**
+     * Modifies the changelog context before the changelog is generated.
+     *
+     * @see https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-writer#finalizecontext
+     *
+     * @param {GeneratedContext} context - Original context
+     * @return {GeneratedContext} Modified `context`
+     */
+    finalizeContext(context: GeneratedContext): GeneratedContext {
+      context.version = `${pkg.name.split('/')[1]}@${context.version}`
+      return context
     },
     ignoreReverted: false
   }

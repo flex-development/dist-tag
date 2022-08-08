@@ -1,7 +1,7 @@
 {
   "name": "@flex-development/dist-tag",
   "description": "Distribution tag lookup utility",
-  "version": "0.0.0",
+  "version": "1.0.0-dev.1",
   "keywords": [
     "dist-tag",
     "npm-publish",
