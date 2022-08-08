@@ -894,7 +894,7 @@ __metadata:
     "@faker-js/faker": "npm:7.3.0"
     "@flex-development/tutils": "npm:5.0.0-dev.1"
     "@jsdevtools/chai-exec": "npm:2.1.1"
-    "@types/chai": "npm:4.3.1"
+    "@types/chai": "npm:4.3.3"
     "@types/conventional-changelog": "npm:3.1.1"
     "@types/conventional-changelog-config-spec": "npm:2.1.1"
     "@types/conventional-changelog-writer": "npm:4.0.1"
@@ -1356,17 +1356,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chai@npm:*, @types/chai@npm:^4.3.1":
-  version: 4.3.2
-  resolution: "@types/chai@npm:4.3.2"
-  checksum: e3c92541fce119bdce253637e080a02649001f1711b6c3710507486f437312abd7a8060c8d0ad0b0d4736b785c3097d7b1033393b95a89b60ae2dcb2036cc80f
-  languageName: node
-  linkType: hard
-
-"@types/chai@npm:4.3.1":
-  version: 4.3.1
-  resolution: "@types/chai@npm:4.3.1"
-  checksum: a8e114170d0d69e1e278721fcc3b58244ebb6ce9f7df07be50fbe2ca58414a76d07a517566185d651d4a5473a743419c1fa76fcca3d41681a8d2760fa2ea81da
+"@types/chai@npm:*, @types/chai@npm:4.3.3, @types/chai@npm:^4.3.1":
+  version: 4.3.3
+  resolution: "@types/chai@npm:4.3.3"
+  checksum: 9cab9c83b4c5c858a7b411086652ad6c1920662a7dbc94c8352db48cb0f8fd3f17d1a21a982ed4cd0aba0041ff7a002f684f3cbd80a5cfa7155236bd59d183d9
   languageName: node
   linkType: hard
 
