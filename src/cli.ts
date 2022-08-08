@@ -6,22 +6,44 @@
  */
 
 import type mri from 'mri'
+import path from 'node:path'
 import sade from 'sade'
-import { description, name, version } from '../package.json'
+import { description, version } from '../package.json'
 import type Flags from './flags'
 import lookup from './node'
+
+/* c8 ignore start */
+
+/**
+ * CLI filename.
+ *
+ * @const {string} filename
+ */
+const filename: string = process.argv[1] ?? ''
+
+/**
+ * CLI program name.
+ *
+ * @var {string} name
+ */
+let name: string = 'dist-tag'
+
+// update cli program name if running esm-compatible cli
+if (/dist-tag-esm/.test(filename) || path.extname(filename) === '.mjs') {
+  name = 'dist-tag-esm'
+}
 
 /**
  * CLI program.
  *
  * @see https://github.com/lukeed/sade#single-command-mode
  *
- * @const {sade.Sade} prog
+ * @const {sade.Sade} program
  */
-const program: sade.Sade = sade([name.split('/')[1], '[target]'].join(' '))
+const program: sade.Sade = sade([name, '[target]'].join(' '))
 
 program
-  .version(version)
+  .version(version) /* c8 ignore stop */
   .describe(description)
   .example('2.0.0')
   .example('2.0.0-alpha.1')

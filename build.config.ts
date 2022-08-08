@@ -126,7 +126,7 @@ const config: BuildConfig = defineBuildConfig({
     cjsBridge: true,
     commonjs: { extensions: ['.cjs', '.js'] },
     emitCJS: true,
-    esbuild: { logLevel: 'info', minify: true },
+    esbuild: { logLevel: 'info', minify: true, target: 'esnext' },
     inlineDependencies: true,
     json: { compact: true },
     resolve: {}
