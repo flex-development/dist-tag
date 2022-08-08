@@ -13,6 +13,7 @@
 # - https://cli.github.com/manual/gh_release_create
 # - https://docs.github.com/en/actions/using-workflows/using-github-cli-in-workflows
 # - https://github.com/bdougie/close-issues-based-on-label
+# - https://github.com/dawidd6/action-delete-branch
 
 ---
 name: deployment
@@ -231,26 +232,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: linked-issues
-        name: Get linked issues
+        name: 🚧  Get linked issues
         if: github.event_name != 'workflow_dispatch'
-        uses: go-actions/linked-issues@v0.1.0
-        with:
-          pr_url: ${{ github.event.pull_request.html_url }}
+        run: echo todo
       - id: label-linked-issues
-        name: Add status:released label to linked issues
+        name: 🚧  Add status:released label to linked issues
         if: github.event_name != 'workflow_dispatch'
-        uses: actions/github-script@v6.1.0
-        env:
-          ISSUES: ${{ steps.linked-issues.outputs.issues }}
-        with:
-          script: |
-            for (const issue_number of JSON.parse(process.env.ISSUES)) {
-              await github.issues.addLabels({
-                ...context.repo,
-                issue_number,
-                labels: ['status:released']
-              })
-            }
+        run: echo todo
       - id: close-released-issues
         name: Close issues with status:released label
         uses: bdougie/close-issues-based-on-label@master
