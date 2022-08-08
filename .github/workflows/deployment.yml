@@ -12,6 +12,7 @@
 # - https://github.com/rickstaa/action-create-tag
 # - https://cli.github.com/manual/gh_release_create
 # - https://docs.github.com/en/actions/using-workflows/using-github-cli-in-workflows
+# - https://github.com/bdougie/close-issues-based-on-label
 
 ---
 name: deployment
@@ -252,7 +253,7 @@ jobs:
             }
       - id: close-released-issues
         name: Close issues with status:released label
-        uses: bdougie/close-issues-based-on-label@v1.2
+        uses: bdougie/close-issues-based-on-label@master
         env:
           GITHUB_TOKEN: ${{ github.token }}
           LABEL: status:released
