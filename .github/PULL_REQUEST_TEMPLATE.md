@@ -27,4 +27,4 @@ request here.
 - [ ] documentation added or updated
 
 [1]:
-  https://github.com/flex-development/dtag/blob/main/CONTRIBUTING.md#pull-request-titles
+  https://github.com/flex-development/dist-tag/blob/main/CONTRIBUTING.md#pull-request-titles

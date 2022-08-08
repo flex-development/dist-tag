@@ -14,8 +14,8 @@ Follow the steps below to setup your local development environment:
 1. Clone repository
 
    ```sh
-   git clone https://github.com/flex-development/dtag
-   cd dtag
+   git clone https://github.com/flex-development/dist-tag
+   cd dist-tag
    ```
 
 2. Install binaries with [Homebrew][1]
@@ -65,17 +65,17 @@ Follow the steps below to setup your local development environment:
    # PATH
    # 1. local node_modules
    [ -d $PWD/node_modules/.bin ] && export PATH=$PWD/node_modules/.bin:$PATH
-   
+
    # DOTENV ZSH PLUGIN
    # - https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv
    export ZSH_DOTENV_FILE=.env.zsh
-   
+
    # NVM
    # - https://github.com/nvm-sh/nvm
    export NVM_DIR=$HOME/.nvm
-   
+
    # ---------------------------------------------------------------------------
-   
+
    # LOAD ENVIRONMENT VARIABLES IN CURRENT WORKING DIRECTORY
    # 1. $GITHUB_WORKSPACE
    [ -d $PWD/.git ] && export GITHUB_WORKSPACE=$(git rev-parse --show-toplevel)
@@ -278,7 +278,7 @@ When you're ready to submit your changes, open a pull request (PR) against
 `main`:
 
 ```sh
-https://github.com/flex-development/dtag/compare/main...$branch
+https://github.com/flex-development/dist-tag/compare/main...$branch
 ```
 
 where `$branch` is the name of the branch you'd like to merge into `main`.
@@ -328,7 +328,7 @@ e.g:
 
 - `refactor(plugin): authentication #52`
 - `perf(web): decrease page loading time #26`
-- `release: @flex-development/dtag@1.0.0 #13`
+- `release: @flex-development/dist-tag@1.0.0 #13`
 
 ## Releasing
 
@@ -351,11 +351,11 @@ Before releasing, the following steps must be completed:
 3. Open a new PR from `release/*` into `main`
    - do **not** change the PR title
      - should match `release: <package.json#name>@<new-version>`
-     - e.g: `release: @flex-development/dtag@1.1.0`
+     - e.g: `release: @flex-development/dist-tag@1.1.0`
    - link all issues being released
    - after review, `squash and merge` PR
-     - `release: @flex-development/dtag@<new-version> (#pull-request-n)`
-       - e.g: `release: @flex-development/dtag@1.1.0 (#3)`
+     - `release: @flex-development/dist-tag@<new-version> (#pull-request-n)`
+       - e.g: `release: @flex-development/dist-tag@1.1.0 (#3)`
    - once PR is merged, deployment workflow will be triggered
    - PR reviewer should make sure workflow completes all jobs successfully
      - if successful, the workflow will:

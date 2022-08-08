@@ -1,9 +1,9 @@
-# dtag
+# dist-tag
 
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![npm](https://img.shields.io/npm/v/@flex-development/dtag.svg)](https://npmjs.com/package/@flex-development/dtag)
-[![license](https://img.shields.io/github/license/flex-development/dtag.svg)](LICENSE.md)
+[![npm](https://img.shields.io/npm/v/@flex-development/dist-tag.svg)](https://npmjs.com/package/@flex-development/dist-tag)
+[![license](https://img.shields.io/github/license/flex-development/dist-tag.svg)](LICENSE.md)
 [![typescript](https://badgen.net/badge/-/typescript?color=2a72bc&icon=typescript&label)](https://typescriptlang.org)
 
 > [Distribution tag][1] lookup utility for Node.js and CLI environments.
@@ -11,7 +11,7 @@
 ## Install
 
 ```sh
-yarn add @flex-development/dtag
+yarn add @flex-development/dist-tag
 ```
 
 ### GitHub Package Registry
@@ -48,13 +48,13 @@ For details on requesting a specific branch, commit, or tag, see
 #### NPM
 
 ```sh
-npm i flex-development/dtag
+npm i flex-development/dist-tag
 ```
 
 #### Yarn
 
 ```sh
-yarn add @flex-development/dtag@flex-development/dtag
+yarn add @flex-development/dist-tag@flex-development/dist-tag
 ```
 
 ## Usage
@@ -63,7 +63,7 @@ yarn add @flex-development/dtag@flex-development/dtag
 
 ```sh
 Usage
-  $ dtag [target] [options]
+  $ dist-tag [target] [options]
 
 Options
   -d, --delimiter Lookup target separator
@@ -71,14 +71,14 @@ Options
   -h, --help Displays this message
 
 Examples
-  $ dtag                                                 # ''
-  $ dtag 2.0.0                                           # ''
-  $ dtag 2.0.0-alpha.1                                   # 'alpha'
-  $ dtag foo-package@2.0.0-beta.1 --delimiter @          # 'beta'
-  $ dtag $(git describe --tags --abbrev=0) -d @          # depends on the tag 😉
+  $ dist-tag                                             # ''
+  $ dist-tag 2.0.0                                       # ''
+  $ dist-tag 2.0.0-alpha.1                               # 'alpha'
+  $ dist-tag foo-package@2.0.0-beta.1 --delimiter @      # 'beta'
+  $ dist-tag $(git describe --tags --abbrev=0) -d @      # depends on the tag 😉
 ```
 
-If you installed `dtag` locally, you may need to update your `PATH`:
+If you installed `dist-tag` locally, you may need to update your `PATH`:
 
 ```sh
 [ -d $PWD/node_modules/.bin ] && export PATH=$PWD/node_modules/.bin:$PATH
@@ -87,7 +87,7 @@ If you installed `dtag` locally, you may need to update your `PATH`:
 ### Node.js
 
 ```typescript
-import dtag from '@flex-development/dtag'
+import dtag from '@flex-development/dist-tag'
 
 console.log(dtag()) // ''
 console.log(dtag({ target: '2.0.0' })) // ''

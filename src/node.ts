@@ -1,6 +1,6 @@
 /**
  * @file Dist Tag Lookup
- * @module dtag/node
+ * @module dist-tag/node
  */
 
 import type Options from './options'

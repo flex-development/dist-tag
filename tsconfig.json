@@ -30,8 +30,6 @@
     "noUnusedParameters": false,
     "outDir": "dist",
     "paths": {
-      "@flex-development/dtag": ["src/index"],
-      "@flex-development/dtag/*": ["src/*"],
       "fixtures/*": ["__fixtures__/*"],
       "src": ["src/index"],
       "src/*": ["src/*"],

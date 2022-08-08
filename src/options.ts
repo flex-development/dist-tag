@@ -1,6 +1,6 @@
 /**
  * @file Options
- * @module dtag/options
+ * @module dist-tag/options
  */
 
 /**

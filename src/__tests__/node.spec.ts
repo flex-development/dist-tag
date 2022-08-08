@@ -1,6 +1,6 @@
 /**
  * @file Unit Tests - node
- * @module dtag/tests/unit/node
+ * @module dist-tag/tests/unit/node
  */
 
 import type { TestcaseFn } from 'tests/interfaces'

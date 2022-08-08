@@ -1,6 +1,6 @@
 /**
  * @file CLI Flags
- * @module dtag/cli/flags
+ * @module dist-tag/cli/flags
  */
 
 import type Options from './options'

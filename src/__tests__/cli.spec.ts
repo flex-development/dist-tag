@@ -1,6 +1,6 @@
 /**
  * @file Unit Tests - CLI
- * @module dtag/tests/unit/cli
+ * @module dist-tag/tests/unit/cli
  */
 
 import exec from '@jsdevtools/chai-exec'

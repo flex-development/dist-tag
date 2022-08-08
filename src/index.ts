@@ -1,10 +1,10 @@
 /**
  * @file Package Entry Point
- * @module dtag
+ * @module dist-tag
  */
 
-import dtag from './node'
+import lookup from './node'
 
 export type { default as Flags } from './flags'
 export type { default as Options } from './options'
-export default dtag
+export default lookup
