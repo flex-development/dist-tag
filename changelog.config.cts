@@ -6,13 +6,17 @@
 
 import type { Config } from 'conventional-changelog-cli'
 import type { Options } from 'conventional-changelog-core'
-import type {
-  CommitGroup,
-  GeneratedContext
-} from 'conventional-changelog-writer'
+import type { CommitGroup } from 'conventional-changelog-writer'
 import type { Commit, CommitRaw } from 'conventional-commits-parser'
 import dateformat from 'dateformat'
 import pkg from './package.json'
+
+/**
+ * Git tag prefix.
+ *
+ * @const {string} TAG_PREFIX
+ */
+const TAG_PREFIX: string = pkg.name.split('/')[1]! + '@'
 
 /**
  * Changelog configuration options.
@@ -27,7 +31,23 @@ import pkg from './package.json'
  */
 const config: Config = {
   options: {
-    lernaPackage: pkg.name.split('/')[1],
+    pkg: {
+      /**
+       * Modifies `package.json` data.
+       *
+       * This includes:
+       *
+       * - Prepending {@link TAG_PREFIX} to `pkg.version`
+       *
+       * @param {typeof import('package.json')} pkg - `package.json` data
+       * @return {typeof pkg} Modified `package.json` data
+       */
+      transform(pkg: typeof import('package.json')): typeof pkg {
+        return Object.assign({}, pkg, {
+          version: TAG_PREFIX + pkg.version
+        })
+      }
+    },
     preset: {
       header: '',
       name: 'conventionalcommits',
@@ -48,6 +68,7 @@ const config: Config = {
       ]
     },
     skipUnstable: false,
+    tagPrefix: TAG_PREFIX,
     /**
      * Raw commit transformer.
      *
@@ -58,13 +79,29 @@ const config: Config = {
      * @return {void} Nothing when complete
      */
     transform(commit: CommitRaw, apply: Options.Transform.Callback): void {
+      commit.committerDate = dateformat(commit.committerDate, 'yyyy-mm-dd')
+
+      if (commit.gitTags) {
+        /**
+         * Regex expression used to check {@link commit.gitTags} for the release
+         * {@link commit} belongs to.
+         *
+         * @const {RegExp} vgx
+         */
+        const vgx = new RegExp(`tag:\\s*[=]?${TAG_PREFIX}(.+?)[,)]`, 'gi')
+
+        commit = Object.assign({}, commit, {
+          version: vgx.exec(commit.gitTags)?.[1] ?? undefined
+        })
+      }
+
+      commit.notes = commit.notes.map(note => ({
+        ...note,
+        text: note.text.replace(/(\n?\n?Signed-off-by:).+/gm, '')
+      }))
+
       return void apply(null, {
         ...commit,
-        committerDate: dateformat(commit.committerDate, 'yyyy-mm-dd', true),
-        notes: commit.notes.map(note => ({
-          ...note,
-          text: note.text.replace(/(\n?\n?Signed-off-by:).+/gm, '')
-        })),
         raw: commit,
         shortHash: commit.hash.slice(0, 7)
       })
@@ -120,18 +157,6 @@ const config: Config = {
       return a.header && b.header
         ? a.header.localeCompare(b.header) || by_date
         : by_date
-    },
-    /**
-     * Modifies the changelog context before the changelog is generated.
-     *
-     * @see https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-writer#finalizecontext
-     *
-     * @param {GeneratedContext} context - Original context
-     * @return {GeneratedContext} Modified `context`
-     */
-    finalizeContext(context: GeneratedContext): GeneratedContext {
-      context.version = `${pkg.name.split('/')[1]}@${context.version}`
-      return context
     },
     ignoreReverted: false
   }

@@ -9,7 +9,11 @@ declare module 'conventional-changelog-cli' {
 
   export interface Config {
     gitRawCommitsOpts?: GitRawCommitsOptions
-    options?: Options & {
+    options?: Omit<Options, 'pkg'> & {
+      pkg?: {
+        path?: string
+        transform?(pkg: typeof import('../../package.json')): typeof pkg
+      }
       preset?: string | (ChangelogSpec.Config & { name: string })
     }
     parserOpts?: ParserOptions
