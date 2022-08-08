@@ -1,5 +1,5 @@
 {
-  // https://github.com/tsconfig/bases/blob/main/bases/node14.json
+  // https://github.com/tsconfig/bases/blob/main/bases/node16.json
   // https://github.com/tsconfig/bases/blob/main/bases/esm.json
   // https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
   "compilerOptions": {
@@ -15,8 +15,8 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": false,
-    "lib": ["dom", "es2020"],
-    "module": "es2022",
+    "lib": ["es2021"],
+    "module": "esnext",
     "moduleResolution": "node",
     "newLine": "lf",
     "noEmit": true,
@@ -45,7 +45,7 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "es2020",
+    "target": "es2021",
     "useDefineForClassFields": true,
     "useUnknownInCatchVariables": true
   },
