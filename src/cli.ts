@@ -2,7 +2,7 @@
 
 /**
  * @file Dist Tag Lookup - CLI
- * @module dtag/cli
+ * @module dist-tag/cli
  */
 
 import type mri from 'mri'

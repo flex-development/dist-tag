@@ -1,19 +1,19 @@
 {
-  "name": "@flex-development/dtag",
+  "name": "@flex-development/dist-tag",
   "description": "Distribution tag lookup utility",
-  "version": "2.0.0",
+  "version": "0.0.0",
   "keywords": [
     "dist-tag",
     "typescript"
   ],
   "license": "BSD-3-Clause",
-  "homepage": "https://github.com/flex-development/dtag",
+  "homepage": "https://github.com/flex-development/dist-tag",
   "repository": {
     "type": "git",
-    "url": "https://github.com/flex-development/dtag.git"
+    "url": "https://github.com/flex-development/dist-tag.git"
   },
   "bugs": {
-    "url": "https://github.com/flex-development/dtag/issues"
+    "url": "https://github.com/flex-development/dist-tag/issues"
   },
   "author": {
     "name": "Lexus Drumgold",
@@ -62,7 +62,7 @@
     "clean:pack": "trash ./*.tgz",
     "clean:test": "trash ./coverage",
     "conventional-changelog": "ts-node ./node_modules/.bin/conventional-changelog -n ./changelog.config.cts",
-    "dtag": "ts-node src/cli",
+    "dist-tag": "ts-node src/cli",
     "fix:cg": "yarn fix:format && yarn fix:lint",
     "fix:dedupe": "yarn dedupe --strategy=highest",
     "fix:format": "prettier --write .",

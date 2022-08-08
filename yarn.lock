@@ -73,13 +73,13 @@ __metadata:
   linkType: hard
 
 "@babel/generator@npm:^7.18.10":
-  version: 7.18.10
-  resolution: "@babel/generator@npm:7.18.10"
+  version: 7.18.12
+  resolution: "@babel/generator@npm:7.18.12"
   dependencies:
     "@babel/types": "npm:^7.18.10"
     "@jridgewell/gen-mapping": "npm:^0.3.2"
     jsesc: "npm:^2.5.1"
-  checksum: b0b920c127e7bfc1a86020671f89111d1832638cb33d866012a1902e8bb71b9f9342cfb12aebf730efff0dd4648dd7f9dab20d5852a9e3441a02be2da2d80a96
+  checksum: d70be57cb82dcbf3e99141a54e65246fde25049a006386b4fd967d8f968453906c7164fed9185171b5864cfe518641af372f64eed140e3d82af475f1750e20aa
   languageName: node
   linkType: hard
 
@@ -219,9 +219,9 @@ __metadata:
   linkType: hard
 
 "@babel/standalone@npm:^7.18.11":
-  version: 7.18.11
-  resolution: "@babel/standalone@npm:7.18.11"
-  checksum: 36968622258ab2c55078081edb3e045cc7fd7fbd7e04b82b6f0a65265788fc92fa8b5228b23475574dc84790cdece95ab297031f707bcfbfd5d1999c21335c41
+  version: 7.18.12
+  resolution: "@babel/standalone@npm:7.18.12"
+  checksum: fec92e7b7ea76b541a3d5835092fab58674e7ae1ec5389255e276bba20239b21b3293c64f0fc8f7e51601e336a0aca4a43cf71c6846147ee778b6235c77ae991
   languageName: node
   linkType: hard
 
@@ -554,9 +554,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-companies@npm:^2.0.9":
-  version: 2.0.10
-  resolution: "@cspell/dict-companies@npm:2.0.10"
-  checksum: 01070aa300b737add44ef5cd58da1a897b978791cd4b75de45053043cdc4fe9e687e11b07cec7a54a2e96275c816fc510d9564bb40cd249e0bd64312dacbd140
+  version: 2.0.11
+  resolution: "@cspell/dict-companies@npm:2.0.11"
+  checksum: f4104dade89d90952eba94b90c585c32994798fa635c6c355c11e48ae85067521ad03910f0442d85be989497deb54eef43d95fc15473d48234df05639dcc40af
   languageName: node
   linkType: hard
 
@@ -729,9 +729,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-npm@npm:^3.1.0":
-  version: 3.1.1
-  resolution: "@cspell/dict-npm@npm:3.1.1"
-  checksum: 911e4559586aee3be0c2c517643be269e4904c81954e537986587b0e23d25b7ce21effe4f73f90eb46a065a03551fb16c8f94d4e8572f6bd62ca5c88ef6d0880
+  version: 3.1.2
+  resolution: "@cspell/dict-npm@npm:3.1.2"
+  checksum: aa787274ad6e38d9ffd0afe6c45cb7095a150ebeeeefcf35e2cea0eaacca1eb97f0063dc4cda255e92029c3ab553d4067d4a5a741c2380029b455f3c654c96fb
   languageName: node
   linkType: hard
 
@@ -884,9 +884,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@flex-development/dtag@workspace:.":
+"@flex-development/dist-tag@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@flex-development/dtag@workspace:."
+  resolution: "@flex-development/dist-tag@workspace:."
   dependencies:
     "@commitlint/cli": "npm:17.0.3"
     "@commitlint/config-conventional": "npm:17.0.3"
@@ -950,13 +950,13 @@ __metadata:
     vitest-github-actions-reporter: "npm:0.8.1"
     yaml-eslint-parser: "npm:1.1.0"
   bin:
-    dtag: ./dist/cli.cjs
+    dist-tag: ./dist/cli.cjs
   languageName: unknown
   linkType: soft
 
 "@flex-development/tutils@npm:5.0.0-dev.1":
   version: 5.0.0-dev.1
-  resolution: "@flex-development/tutils@npm:5.0.0-dev.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40flex-development%2Ftutils%2F5.0.0-dev.1%2F6e2c30ef81fceaf3e0e3f8735192e50abab08271e3cfdfeefa24cac8c7799215"
+  resolution: "@flex-development/tutils@npm:5.0.0-dev.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40flex-development%2Ftutils%2F5.0.0-dev.1%2F9d128c77534cf39fd29cad7733e8e8c4c2106232"
   checksum: 07410972e5fff494034c908481ebd9ed6c0bc18e0146bc7872313909a1da05fb125460aed757df338dfacf3467ae36f64ac34cc9a3b81e626c81d7ad98ea7837
   languageName: node
   linkType: hard
@@ -1197,8 +1197,8 @@ __metadata:
   linkType: hard
 
 "@rollup/plugin-commonjs@npm:^22.0.1":
-  version: 22.0.1
-  resolution: "@rollup/plugin-commonjs@npm:22.0.1"
+  version: 22.0.2
+  resolution: "@rollup/plugin-commonjs@npm:22.0.2"
   dependencies:
     "@rollup/pluginutils": "npm:^3.1.0"
     commondir: "npm:^1.0.1"
@@ -1209,7 +1209,7 @@ __metadata:
     resolve: "npm:^1.17.0"
   peerDependencies:
     rollup: ^2.68.0
-  checksum: ed7ed41ec05a73a788f68a21b3078949cecba7606f1ad7859b80f87e74f2601baee7d14c7c1b2eee276cd370845215380f8905ed97fe1e7ef391bab504491604
+  checksum: 532072063075f64081f97910efb69dd551eb83b1b577ec9fe2911e71b4638ba1ca1e612fe65c8ef4d6246134d975f5950c6eca8eda72d196c0baa7713330ea6f
   languageName: node
   linkType: hard
 
@@ -1356,7 +1356,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chai@npm:*, @types/chai@npm:4.3.1, @types/chai@npm:^4.3.1":
+"@types/chai@npm:*, @types/chai@npm:^4.3.1":
+  version: 4.3.2
+  resolution: "@types/chai@npm:4.3.2"
+  checksum: e3c92541fce119bdce253637e080a02649001f1711b6c3710507486f437312abd7a8060c8d0ad0b0d4736b785c3097d7b1033393b95a89b60ae2dcb2036cc80f
+  languageName: node
+  linkType: hard
+
+"@types/chai@npm:4.3.1":
   version: 4.3.1
   resolution: "@types/chai@npm:4.3.1"
   checksum: a8e114170d0d69e1e278721fcc3b58244ebb6ce9f7df07be50fbe2ca58414a76d07a517566185d651d4a5473a743419c1fa76fcca3d41681a8d2760fa2ea81da
@@ -4495,7 +4502,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"has-symbols@npm:^1.0.1, has-symbols@npm:^1.0.2, has-symbols@npm:^1.0.3":
+"has-symbols@npm:^1.0.2, has-symbols@npm:^1.0.3":
   version: 1.0.3
   resolution: "has-symbols@npm:1.0.3"
   checksum: 2d0abb3382da2945b1b8d9a4afebc8a0770fe07198e727b4fbd7f616c70796f040bf2bd8d6db47e0c590507812a2680594fc77f871238289f6c7870318cf62c9
@@ -5829,9 +5836,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mkdist@patch:mkdist@npm:0.3.13#.yarn/patches/mkdist-npm-0.3.13-c41cf41c68.patch::locator=%40flex-development%2Fdtag%40workspace%3A.":
+"mkdist@patch:mkdist@npm:0.3.13#.yarn/patches/mkdist-npm-0.3.13-c41cf41c68.patch::locator=%40flex-development%2Fdist-tag%40workspace%3A.":
   version: 0.3.13
-  resolution: "mkdist@patch:mkdist@npm%3A0.3.13#.yarn/patches/mkdist-npm-0.3.13-c41cf41c68.patch::version=0.3.13&hash=bec471&locator=%40flex-development%2Fdtag%40workspace%3A."
+  resolution: "mkdist@patch:mkdist@npm%3A0.3.13#.yarn/patches/mkdist-npm-0.3.13-c41cf41c68.patch::version=0.3.13&hash=bec471&locator=%40flex-development%2Fdist-tag%40workspace%3A."
   dependencies:
     defu: "npm:^6.0.0"
     esbuild: "npm:^0.14.47"
@@ -6119,14 +6126,14 @@ __metadata:
   linkType: hard
 
 "object.assign@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "object.assign@npm:4.1.2"
+  version: 4.1.3
+  resolution: "object.assign@npm:4.1.3"
   dependencies:
-    call-bind: "npm:^1.0.0"
-    define-properties: "npm:^1.1.3"
-    has-symbols: "npm:^1.0.1"
+    call-bind: "npm:^1.0.2"
+    define-properties: "npm:^1.1.4"
+    has-symbols: "npm:^1.0.3"
     object-keys: "npm:^1.1.1"
-  checksum: e33de12dd0a3afa108ef089cbc0744625eddce4a9c0978d004e463fb1c70f3bebfd5fcd5459ee85abe95cd5066df7b4937b50c3fb4ff3439e225b9216d08f33f
+  checksum: 8bfa17d6f14be42b674bfaaef21f906f89a2eb8a0541d5069a6d55c68c3665513e40bc7c2739b487c6a6b108079600a2004c4fef0f2a8823e41647922eae6930
   languageName: node
   linkType: hard
 
@@ -6544,13 +6551,13 @@ __metadata:
   linkType: hard
 
 "postcss@npm:^8.4.14":
-  version: 8.4.14
-  resolution: "postcss@npm:8.4.14"
+  version: 8.4.16
+  resolution: "postcss@npm:8.4.16"
   dependencies:
     nanoid: "npm:^3.3.4"
     picocolors: "npm:^1.0.0"
     source-map-js: "npm:^1.0.2"
-  checksum: 1e1e4a4cc235674bea79da18dd3e02ea8ffcd51546c7ddf1fc7ba4de5e89154a83988bb8c1b30bd9566df56fc0077dce6e620d8f9ce6ababf60f659ffc53f72c
+  checksum: 474b2c445150bbbf75c67e4a539de41210ddb16d008f2f632820625a880c8c4d7b38361513c0e857e254ac921aac984256fcf1e4cce45a5d9f533b35d1c6bdaa
   languageName: node
   linkType: hard
 
@@ -7819,7 +7826,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsconfig-paths@npm:4.0.0, tsconfig-paths@npm:^4.0.0":
+"tsconfig-paths@npm:4.0.0":
   version: 4.0.0
   resolution: "tsconfig-paths@npm:4.0.0"
   dependencies:
@@ -7827,6 +7834,17 @@ __metadata:
     minimist: "npm:^1.2.6"
     strip-bom: "npm:^3.0.0"
   checksum: 2fcff3f94ad5116353e17a02bba243f0ebf1b8e90a8fb09d95df08d701abfa8a17e8d2a80472661bb2f8b1a8ef09ccaa63028deaac13da56f1c2b7314c0d4ba8
+  languageName: node
+  linkType: hard
+
+"tsconfig-paths@npm:^4.0.0":
+  version: 4.1.0
+  resolution: "tsconfig-paths@npm:4.1.0"
+  dependencies:
+    json5: "npm:^2.2.1"
+    minimist: "npm:^1.2.6"
+    strip-bom: "npm:^3.0.0"
+  checksum: fa7c821f554e54340861ed8ca0e1f319e96ed8b9e63bf7571a19f6ffc0aceab5cff49a84245c1584a7ead10362f8ab04f81162088ea0fc26cace8fe7550287d9
   languageName: node
   linkType: hard
 
