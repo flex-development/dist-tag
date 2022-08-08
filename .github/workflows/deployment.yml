@@ -1,7 +1,11 @@
-# Continuous Deployment
+# Deployment
+#
+# Publish package and GitHub release when a `release/*` branch is merged into
+# `main` or on workflow dispatch.
 #
 # References:
 #
+# - https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request
 # - https://github.com/actions/github-script
 # - https://github.com/actions/checkout
 # - https://github.com/actions/setup-node
@@ -10,12 +14,13 @@
 # - https://docs.github.com/en/actions/using-workflows/using-github-cli-in-workflows
 
 ---
-name: continuous-deployment
+name: deployment
 on:
   pull_request:
     branches:
       - main
-    types: [closed]
+    types:
+      - closed
   workflow_dispatch:
     inputs:
       version:
@@ -25,24 +30,38 @@ jobs:
   metadata:
     name: Metadata
     if: |
-      github.event.inputs.version ||
+      github.event_name == 'workflow_dispatch' ||
       (startsWith(github.event.pull_request.head.ref, 'release/')
       && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
     outputs:
-      artifact-name: ${{ steps.release.outputs.artifact-name }}
-      artifact-path: ${{ steps.release.outputs.artifact-path }}
-      dist-tag: ${{ steps.release.outputs.dist-tag }}
-      message: ${{ steps.release.outputs.message }}
-      prerelease: ${{ steps.release.outputs.prerelease }}
-      tag: ${{ steps.release.outputs.tag }}
+      artifact-path: ${{ steps.artifact.outputs.result }}
+      dist-tag: ${{ steps.dist-tag.outputs.result }}
+      message: ${{ steps.version.outputs.message }}
+      prerelease: ${{ steps.prerelease.outputs.result }}
+      scope: ${{ steps.workspace.outputs.scope }}
+      tag: ${{ steps.version.outputs.tag }}
+      version: ${{ steps.version.outputs.version }}
     steps:
-      - id: release
-        name: Get release metadata
+      - id: workspace
+        name: Get workspace
         uses: actions/github-script@v6.1.0
         with:
           script: |
+            const scope = `@${context.repo.owner}`
+
+            core.setOutput('scope', scope)
+            core.setOutput('workspace', `${scope}/${context.repo.repo}`)
+      - id: version
+        name: Get version
+        uses: actions/github-script@v6.1.0
+        env:
+          WORKSPACE: ${{ steps.workspace.outputs.workspace }}
+        with:
+          script: |
             const { payload, repo } = context
+
+            const workspace = process.env.WORKSPACE
 
             let version
 
@@ -52,25 +71,48 @@ jobs:
 
             if (payload.inputs) version = payload.inputs.version
 
-            const workspace = `@${repo.owner}/${repo.repo}`
-            const artifact_name = `${workspace.replace('/', '-')}-${version}`
-            const artifact_path = `./${artifact_name}.tgz`
-
-            let dist_tag = version.match(/(?!-)([a-z]+)/)?.[0].trim() ?? ''
-            if (dist_tag) dist_tag = `--tag ${dist_tag}`
-
-            core.setOutput('artifact-name', artifact_name)
-            core.setOutput('artifact-path', artifact_path)
-            core.setOutput('dist-tag', dist_tag)
             core.setOutput('message', `release: ${workspace}@${version}`)
-            core.setOutput('prerelease', !!dist_tag)
             core.setOutput('tag', `${repo.repo}@${version}`)
+            core.setOutput('version', version)
+      - id: artifact
+        name: Get artifact path
+        uses: actions/github-script@v6.1.0
+        env:
+          WORKSPACE: ${{ steps.workspace.outputs.workspace }}
+          VERSION: ${{ steps.version.outputs.version }}
+        with:
+          script: |
+            const workspace = process.env.WORKSPACE
+            const version = process.env.VERSION
+            const artifact_name = workspace.replace('/', '-') + '-' + version
+
+            return './' + artifact_name + '.tgz'
+      - id: dist-tag
+        name: Get dist tag
+        uses: actions/github-script@v6.1.0
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        with:
+          script: |
+            const version = process.env.VERSION
+            const tag = version.match(/(?!-)([a-z]+)/)?.[0].trim() ?? ''
+
+            return tag ? tag = `--tag ${tag}` : tag
+      - id: prerelease
+        name: Check for prerelease
+        uses: actions/github-script@v6.1.0
+        env:
+          DIST_TAG: ${{ steps.dist-tag.outputs.result }}
+        with:
+          # todo: calculate number of prereleases to include in release notes
+          script: return !!process.env.DIST_TAG
   publish-release:
     name: Publish GitHub release
     needs: metadata
     runs-on: ubuntu-latest
     env:
       GH_PAT: ${{ secrets.PAT_GPR_ADMIN }}
+      NOTES_FILE: ./RELEASE_NOTES.md
       NPM_TOKEN: ${{ secrets.NPM_TOKEN_ADMIN }}
     strategy:
       matrix:
@@ -87,7 +129,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          scope: '@${{ github.repository_owner }}'
+          scope: ${{ needs.metadata.outputs.scope }}
       - id: yarn
         name: Install dependencies
         run: yarn --immutable
@@ -103,8 +145,8 @@ jobs:
           NODE_OPTIONS: --es-module-specifier-resolution=node
       - id: release-notes
         name: Generate release notes
-        run: |
-          ./node_modules/.bin/ts-node ./node_modules/.bin/conventional-changelog -n ./changelog.config.cts -o RELEASE_NOTES.md
+        # todo: handle prereleases
+        run: yarn conventional-changelog -o $NOTES_FILE
         env:
           TS_NODE_PROJECT: ./tsconfig.tsnode.json
       - id: tag
@@ -120,7 +162,6 @@ jobs:
         env:
           ASSET: ${{ needs.metadata.outputs.artifact-path }}
           GITHUB_TOKEN: ${{ env.GH_PAT }}
-          NOTES_FILE: ./RELEASE_NOTES.md
           PRERELEASE: ${{ needs.metadata.outputs.prerelease }}
           TAG: ${{ needs.metadata.outputs.tag }}
   publish-package:
@@ -128,9 +169,11 @@ jobs:
     needs: [metadata, publish-release]
     runs-on: ubuntu-latest
     env:
+      ARTIFACT: ${{ needs.metadata.outputs.artifact-path }}
+      DIST_TAG: ${{ needs.metadata.outputs.dist-tag }}
       GH_PAT: ${{ secrets.PAT_GPR_ADMIN }}
+      HUSKY: 0
       NPM_TOKEN: ${{ secrets.NPM_TOKEN_ADMIN }}
-      SCOPE: '@${{ github.repository_owner }}'
     strategy:
       matrix:
         node: [16.16.0]
@@ -148,12 +191,11 @@ jobs:
           cache: yarn
           node-version: ${{ matrix.node }}
           registry-url: https://npm.pkg.github.com
-          scope: ${{ env.SCOPE }}
+          scope: ${{ needs.metadata.outputs.scope }}
       - id: yarn
         name: Install dependencies
         run: yarn --immutable
         env:
-          HUSKY: 0
           NODE_AUTH_TOKEN: ${{ env.GH_PAT }}
       - id: pack
         name: Pack project
@@ -166,8 +208,6 @@ jobs:
         name: Publish package [GPR]
         run: npm publish $ARTIFACT $DIST_TAG
         env:
-          ARTIFACT: ${{ needs.metadata.outputs.artifact-path }}
-          DIST_TAG: ${{ needs.metadata.outputs.dist-tag }}
           NODE_AUTH_TOKEN: ${{ env.GH_PAT }}
       - id: setup-npmrc-npm
         name: Setup .npmrc file [NPM]
@@ -177,11 +217,49 @@ jobs:
           cache: yarn
           node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org
-          scope: ${{ env.SCOPE }}
+          scope: ${{ needs.metadata.outputs.scope }}
       - id: publish-to-npm
         name: Publish package [NPM]
         run: npm publish $ARTIFACT $DIST_TAG
         env:
-          ARTIFACT: ${{ needs.metadata.outputs.artifact-path }}
-          DIST_TAG: ${{ needs.metadata.outputs.dist-tag }}
           NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+  cleanup:
+    name: Cleanup
+    needs: [metadata, publish-release, publish-package]
+    runs-on: ubuntu-latest
+    steps:
+      - id: linked-issues
+        name: Get linked issues
+        if: github.event_name != 'workflow_dispatch'
+        uses: go-actions/linked-issues@v0.1.0
+        with:
+          pr_url: ${{ github.event.pull_request.html_url }}
+      - id: label-linked-issues
+        name: Add status:released label to linked issues
+        if: github.event_name != 'workflow_dispatch'
+        uses: actions/github-script@v6.1.0
+        env:
+          ISSUES: ${{ steps.linked-issues.outputs.issues }}
+        with:
+          script: |
+            for (const issue_number of JSON.parse(process.env.ISSUES)) {
+              await github.issues.addLabels({
+                ...context.repo,
+                issue_number,
+                labels: ['status:released']
+              })
+            }
+      - id: close-released-issues
+        name: Close issues with status:released label
+        uses: bdougie/close-issues-based-on-label@v1.2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          LABEL: status:released
+      - id: delete-release-branch
+        name: Delete branch release/${{ needs.metadata.outputs.version }}
+        if: github.event_name != 'workflow_dispatch'
+        uses: dawidd6/action-delete-branch@v3.1.0
+        with:
+          branches: release/
+          github_token: ${{ github.token }}
+          suffix: ${{ needs.metadata.outputs.version }}

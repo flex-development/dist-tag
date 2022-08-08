@@ -301,13 +301,13 @@ merged, PR titles are expected to adhere to the same rules.
 
 ## Merge Strategies
 
-In every repository, the `create a merge commit` and `squash and merge` options
-are enabled.
+In every repository, the `rebase and merge` and `squash and merge` options are
+enabled.
 
-- **create a merge commit**: PR has multiple commits that are not grouped
-- **squash and merge**: PR has one commit or a group of multiple commits
+- **rebase and merge**: PR has one commit or commits that are not grouped
+- **squash and merge**: PR has one commit or a group of commits
 
-Make sure to follow [commit message standards](#commit-messages):
+When squashing, be sure to follow [commit message standards](#commit-messages):
 
 ```zsh
 <type>[optional scope][!]: <pull-request-title> (#pull-request-n)
@@ -330,27 +330,28 @@ e.g:
 - `perf(web): decrease page loading time #26`
 - `release: @flex-development/dist-tag@1.0.0 #13`
 
-## Releasing
+## Deployment
 
 > Note: Package and release publication is executed via GitHub workflow.\
 > This is so invalid or malicious versions cannot be published without merging those
 > changes into `main` first.
 
-Before releasing, the following steps must be completed:
+Before deploying, the following steps must be completed:
 
 1. Schedule a code freeze
 2. Decide what type of version bump the package needs
-   - `yarn release <new-version>`
-   - `yarn release major`
-   - `yarn release minor`
-   - `yarn release patch`
-   - `yarn release premajor --pre <dist-tag>`
-   - `yarn release preminor --pre <dist-tag>`
-   - `yarn release prepatch --pre <dist-tag>`
-   - `yarn release prerelease --pre <dist-tag>`
-3. Open a new PR from `release/*` into `main`
-   - do **not** change the PR title
-     - should match `release: <package.json#name>@<new-version>`
+   - `bump <new-version>`
+   - `bump major`
+   - `bump minor`
+   - `bump patch`
+   - `bump premajor --preid <dist-tag>`
+   - `bump preminor --preid <dist-tag>`
+   - `bump prepatch --preid <dist-tag>`
+   - `bump prerelease --preid <dist-tag>`
+3. `yarn conventional-changelog -i CHANGELOG.md -s`
+4. `yarn release $(fx package.json .version)`
+5. Open a new PR from `release/*` into `main`
+   - pr title should match `release: <package.json#name>@<new-version>`
      - e.g: `release: @flex-development/dist-tag@1.1.0`
    - link all issues being released
    - after review, `squash and merge` PR
@@ -363,9 +364,9 @@ Before releasing, the following steps must be completed:
        - create and push new tag
        - create and publish github release
        - publish package to [GitHub Package Registry][17] and [NPM][18]
-   - PR reviewer should go through the PR's linked issues and:
-     - add `status:merged` label
-     - add `status:released` label
+       - add the `status:released` label to all linked issues
+       - make sure all issues with the `status:released` label are closed
+       - delete the release branch
 
 [1]: https://brew.sh
 [2]:
