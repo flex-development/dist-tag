@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "keywords": [
     "dist-tag",
+    "npm-dist-tag",
     "npm-publish",
-    "npm-tag",
     "typescript"
   ],
   "license": "BSD-3-Clause",
