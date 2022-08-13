@@ -53,7 +53,7 @@ jobs:
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
       - id: yarn-cache
         name: Restore yarn cache
-        uses: actions/cache@v3
+        uses: actions/cache@v3.0.7
         with:
           key: yarn-cache-folder-${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
