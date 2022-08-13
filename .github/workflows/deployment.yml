@@ -114,7 +114,7 @@ jobs:
     needs: metadata
     runs-on: ubuntu-latest
     env:
-      GH_PAT: ${{ secrets.PAT_GPR_ADMIN }}
+      GITHUB_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
       NOTES_FILE: ./RELEASE_NOTES.md
       NPM_TOKEN: ${{ secrets.NPM_TOKEN_ADMIN }}
     strategy:
@@ -138,7 +138,7 @@ jobs:
         run: yarn --immutable
         env:
           HUSKY: 0
-          NODE_AUTH_TOKEN: ${{ env.GH_PAT }}
+          NODE_AUTH_TOKEN: ${{ env.GITHUB_TOKEN }}
       - id: pack
         name: Pack project
         run: yarn pack -o %s-%v.tgz && ls
@@ -164,7 +164,7 @@ jobs:
         run: gh release create $TAG $ASSET -t=$TAG -F=$NOTES_FILE -p=$PRERELEASE
         env:
           ASSET: ${{ needs.metadata.outputs.artifact-path }}
-          GITHUB_TOKEN: ${{ env.GH_PAT }}
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
           PRERELEASE: ${{ needs.metadata.outputs.prerelease }}
           TAG: ${{ needs.metadata.outputs.tag }}
   publish-package:
@@ -174,7 +174,7 @@ jobs:
     env:
       ARTIFACT: ${{ needs.metadata.outputs.artifact-path }}
       DIST_TAG: ${{ needs.metadata.outputs.dist-tag }}
-      GH_PAT: ${{ secrets.PAT_GPR_ADMIN }}
+      GITHUB_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
       HUSKY: 0
       NPM_TOKEN: ${{ secrets.NPM_TOKEN_ADMIN }}
     strategy:
@@ -199,7 +199,7 @@ jobs:
         name: Install dependencies
         run: yarn --immutable
         env:
-          NODE_AUTH_TOKEN: ${{ env.GH_PAT }}
+          NODE_AUTH_TOKEN: ${{ env.GITHUB_TOKEN }}
       - id: pack
         name: Pack project
         run: yarn pack -o %s-%v.tgz
@@ -211,7 +211,7 @@ jobs:
         name: Publish package [GPR]
         run: npm publish $ARTIFACT $DIST_TAG
         env:
-          NODE_AUTH_TOKEN: ${{ env.GH_PAT }}
+          NODE_AUTH_TOKEN: ${{ env.GITHUB_TOKEN }}
       - id: setup-npmrc-npm
         name: Setup .npmrc file [NPM]
         uses: actions/setup-node@v3
