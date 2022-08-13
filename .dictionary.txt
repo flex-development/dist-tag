@@ -20,6 +20,7 @@ esbuild
 fbca
 fpnv
 gpgsign
+hmarr
 iife
 jsdevtools
 lcov
@@ -27,6 +28,7 @@ lintstagedrc
 micnncim
 mkdist
 nocheck
+noreply
 npmjs
 npmrc
 nums
