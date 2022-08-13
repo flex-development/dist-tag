@@ -47,7 +47,7 @@ jobs:
     steps:
       - id: workspace
         name: Get workspace
-        uses: actions/github-script@v6.1.0
+        uses: actions/github-script@v6.1.1
         with:
           script: |
             const scope = `@${context.repo.owner}`
@@ -56,7 +56,7 @@ jobs:
             core.setOutput('workspace', `${scope}/${context.repo.repo}`)
       - id: version
         name: Get version
-        uses: actions/github-script@v6.1.0
+        uses: actions/github-script@v6.1.1
         env:
           WORKSPACE: ${{ steps.workspace.outputs.workspace }}
         with:
@@ -78,7 +78,7 @@ jobs:
             core.setOutput('version', version)
       - id: artifact
         name: Get artifact path
-        uses: actions/github-script@v6.1.0
+        uses: actions/github-script@v6.1.1
         env:
           WORKSPACE: ${{ steps.workspace.outputs.workspace }}
           VERSION: ${{ steps.version.outputs.version }}
@@ -91,7 +91,7 @@ jobs:
             return `./${workspace.replace('/', '-')}-${version}.tgz`
       - id: dist-tag
         name: Get dist tag
-        uses: actions/github-script@v6.1.0
+        uses: actions/github-script@v6.1.1
         env:
           VERSION: ${{ steps.version.outputs.version }}
         with:
@@ -103,7 +103,7 @@ jobs:
             return tag ? `--tag ${tag}` : ''
       - id: prerelease
         name: Check for prerelease
-        uses: actions/github-script@v6.1.0
+        uses: actions/github-script@v6.1.1
         env:
           DIST_TAG: ${{ steps.dist-tag.outputs.result }}
         with:
