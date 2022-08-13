@@ -59,9 +59,9 @@ jobs:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           restore-keys: |
             yarn-cache-folder-
-      - id: yarn-install
+      - id: yarn
         name: Install dependencies
-        run: yarn --immutable
+        run: yarn
         env:
           HUSKY: 0
       - id: dedupe-check
