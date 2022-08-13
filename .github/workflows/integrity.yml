@@ -28,7 +28,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
-  integrity-check:
+  integrity:
     if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     strategy:
