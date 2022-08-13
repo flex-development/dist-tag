@@ -5,15 +5,15 @@
 #
 # References:
 #
-# - https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request
-# - https://github.com/actions/github-script
-# - https://github.com/actions/checkout
-# - https://github.com/actions/setup-node
-# - https://github.com/rickstaa/action-create-tag
 # - https://cli.github.com/manual/gh_release_create
+# - https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request
 # - https://docs.github.com/en/actions/using-workflows/using-github-cli-in-workflows
+# - https://github.com/actions/checkout
+# - https://github.com/actions/github-script
+# - https://github.com/actions/setup-node
 # - https://github.com/bdougie/close-issues-based-on-label
 # - https://github.com/dawidd6/action-delete-branch
+# - https://github.com/rickstaa/action-create-tag
 
 ---
 name: deployment

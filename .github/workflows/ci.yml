@@ -2,8 +2,10 @@
 #
 # References:
 #
+# - https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#pull_request
+# - https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#push
+# - https://docs.github.com/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
 # - https://github.com/actions/checkout
-# - https://docs.github.com/actions/guides/building-and-testing-nodejs
 
 ---
 name: continuous-integration
