@@ -123,7 +123,7 @@ jobs:
     steps:
       - id: checkout
         name: Checkout branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.0.2
         with:
           fetch-depth: 0
           ref: main
@@ -183,7 +183,7 @@ jobs:
     steps:
       - id: checkout
         name: Checkout branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.0.2
         with:
           ref: main
       - id: setup-npmrc-gpr
