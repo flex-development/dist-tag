@@ -3,7 +3,6 @@
 # References:
 #
 # - https://github.com/actions/checkout
-# - https://github.com/actions/setup-node
 # - https://docs.github.com/actions/guides/building-and-testing-nodejs
 
 ---
@@ -36,12 +35,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
-      - id: node
-        name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-          scope: '@${{ github.repository_owner }}'
       - id: yarn
         name: Install dependencies
         if: github.actor != 'dependabot[bot]'
