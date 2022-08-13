@@ -22,9 +22,11 @@ on:
       - .yarnrc.yml
       - yarn.lock
   workflow_dispatch:
+permissions:
+  packages: read
 env:
-  GITHUB_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
-  NODE_AUTH_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   integrity-check:
     if: github.actor != 'dependabot[bot]'

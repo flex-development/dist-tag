@@ -13,10 +13,12 @@ on:
     branches:
       - main
   workflow_dispatch:
+permissions:
+  packages: read
 env:
-  GITHUB_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   HUSKY: 0
-  NODE_AUTH_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
+  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
