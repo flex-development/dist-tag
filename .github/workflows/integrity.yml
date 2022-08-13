@@ -27,6 +27,7 @@ permissions:
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  REF: ${{ github.head_ref || github.ref_name }}
 jobs:
   integrity:
     if: github.actor != 'dependabot[bot]'
@@ -36,8 +37,10 @@ jobs:
         node: [16.16.0]
     steps:
       - id: checkout
-        name: Checkout branch
+        name: Checkout ${{ env.REF }}
         uses: actions/checkout@v3.0.2
+        with:
+          ref: ${{ env.REF }}
       - id: setup-node
         name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v3.4.1
