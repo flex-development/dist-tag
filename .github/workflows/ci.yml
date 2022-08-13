@@ -14,8 +14,14 @@ on:
     branches:
       - main
   workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   ci:
+    if: |
+      github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' ||
+      !startsWith(github.event.head_commit.message, format('release: @{0}', github.repository))
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.PAT_GPR_ADMIN }}
