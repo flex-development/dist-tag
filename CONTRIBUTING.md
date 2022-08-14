@@ -364,7 +364,6 @@ Before deploying, the following steps must be completed:
        - create and push new tag
        - create and publish github release
        - publish package to [GitHub Package Registry][17] and [NPM][18]
-       - add the `status:released` label to all linked issues
        - make sure all issues with the `status:released` label are closed
        - delete the release branch
 

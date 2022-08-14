@@ -231,14 +231,6 @@ jobs:
     needs: [metadata, publish-release, publish-package]
     runs-on: ubuntu-latest
     steps:
-      - id: linked-issues
-        name: 🚧  Get linked issues
-        if: github.event_name != 'workflow_dispatch'
-        run: echo todo
-      - id: label-linked-issues
-        name: 🚧  Add status:released label to linked issues
-        if: github.event_name != 'workflow_dispatch'
-        run: echo todo
       - id: close-released-issues
         name: Close issues with status:released label
         uses: bdougie/close-issues-based-on-label@master
