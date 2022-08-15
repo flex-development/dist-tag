@@ -88,7 +88,9 @@ const config: Config = {
          *
          * @const {RegExp} vgx
          */
-        const vgx = new RegExp(`tag:\\s*[=]?${TAG_PREFIX}(.+?)[,)]`, 'gi')
+        const vgx: RegExp = TAG_PREFIX
+          ? new RegExp(`tag:\\s*[=]?${TAG_PREFIX}(.+?)[,)]`, 'gi')
+          : /tag:\s*[=v]?(.+?)[),]/gi
 
         commit = Object.assign({}, commit, {
           version: vgx.exec(commit.gitTags)?.[1] ?? undefined
