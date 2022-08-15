@@ -123,7 +123,7 @@ jobs:
       - id: tag
         name: Create annotated tag
         run: |
-          GIT_COMMITTER_DATE=\"$(git show --format=%aD | head -1)\" git tag -asf $TAG -m "$MESSAGE"
+          git tag -asf $TAG -m "$MESSAGE"
           git tag -v $TAG
           git push origin --tags
         env:
