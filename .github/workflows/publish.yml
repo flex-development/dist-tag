@@ -34,7 +34,7 @@ jobs:
   metadata:
     runs-on: ubuntu-latest
     env:
-      TAG: ${{ github.event.inputs.tag ||  github.event.release.tag_name }}
+      TAG: ${{ github.event.inputs.tag || github.event.release.tag_name }}
     outputs:
       dist-tag: ${{ steps.dist-tag.outputs.flag }}
       version: ${{ steps.version.outputs.result }}
@@ -46,7 +46,7 @@ jobs:
         name: Checkout ${{ env.TAG }}
         uses: actions/checkout@v3.0.2
         with:
-          ref: ${{ env.TAG }}
+          ref: ${{ format('refs/tags/{0}', env.TAG) }}
       - id: version
         name: Get package version
         run: echo "::set-output name=result::$(jq .version package.json -r)"
