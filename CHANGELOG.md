@@ -1,3 +1,5 @@
+## [dist-tag@1.0.1](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.1-dev.5...dist-tag@1.0.1) (2022-08-15)
+
 ## [dist-tag@1.0.1-dev.5](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.1-dev.4...dist-tag@1.0.1-dev.5) (2022-08-15)
 
 
