@@ -1,3 +1,13 @@
+## [dist-tag@1.0.1-dev.2](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.1-dev.1...dist-tag@1.0.1-dev.2) (2022-08-15)
+
+
+### :robot: Continuous Integration
+
+* **workflows:** fix tag checkout in `publish` ([905d642](https://github.com/flex-development/dist-tag/commit/905d642d16435cdb26d3290aa63dab27b6bd73b6))
+* **workflows:** publish releases from bot account to trigger `publish` workflow ([8a6b019](https://github.com/flex-development/dist-tag/commit/8a6b019549520c033605fe7e1d6ddef90151bbf3))
+* **workflows:** remove `release.jobs.cleanup.wait` ([afac5b2](https://github.com/flex-development/dist-tag/commit/afac5b26a4ba42d318a7c41be797bb7ecfb207af))
+* **workflows:** sign annotated tags in release workflow ([5aaa8b7](https://github.com/flex-development/dist-tag/commit/5aaa8b763921a893e36b6282dfcc47a44b423a57))
+
 ## [dist-tag@1.0.1-dev.1](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.0...dist-tag@1.0.1-dev.1) (2022-08-15)
 
 
