@@ -105,7 +105,7 @@ jobs:
       - id: gpg-trust
         name: Set trust on GPG key
         run: |
-          gpg --no-tty --command-fd 0 --edit-key 0xDEADBEEF << EOTRUST
+          gpg --no-tty --command-fd 0 --edit-key ${{ steps.gpg-import.outputs.keyid }} << EOTRUST
           trust
           5
           y
