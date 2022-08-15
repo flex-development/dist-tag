@@ -1,3 +1,10 @@
+## [dist-tag@1.0.1-dev.5](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.1-dev.4...dist-tag@1.0.1-dev.5) (2022-08-15)
+
+
+### :robot: Continuous Integration
+
+* **workflows:** checkout pr merge commit sha before creating release tags ([2051aea](https://github.com/flex-development/dist-tag/commit/2051aeabdf921a257d4016f2f413f2563932c401))
+
 ## [dist-tag@1.0.1-dev.4](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.1-dev.3...dist-tag@1.0.1-dev.4) (2022-08-15)
 
 
