@@ -23,6 +23,7 @@ gpgsign
 hmarr
 iife
 jsdevtools
+keyid
 lcov
 lintstagedrc
 micnncim
