@@ -9,6 +9,7 @@ import type { Options } from 'conventional-changelog-core'
 import type { CommitGroup } from 'conventional-changelog-writer'
 import type { Commit, CommitRaw } from 'conventional-commits-parser'
 import dateformat from 'dateformat'
+import fs from 'node:fs'
 import pkg from './package.json'
 
 /**
@@ -31,23 +32,6 @@ const TAG_PREFIX: string = pkg.name.split('/')[1]! + '@'
  */
 const config: Config = {
   options: {
-    pkg: {
-      /**
-       * Modifies `package.json` data.
-       *
-       * This includes:
-       *
-       * - Prepending {@link TAG_PREFIX} to `pkg.version`
-       *
-       * @param {typeof import('package.json')} pkg - `package.json` data
-       * @return {typeof pkg} Modified `package.json` data
-       */
-      transform(pkg: typeof import('package.json')): typeof pkg {
-        return Object.assign({}, pkg, {
-          version: TAG_PREFIX + pkg.version
-        })
-      }
-    },
     preset: {
       header: '',
       name: 'conventionalcommits',
@@ -160,6 +144,7 @@ const config: Config = {
         ? a.header.localeCompare(b.header) || by_date
         : by_date
     },
+    headerPartial: fs.readFileSync('templates/changelog/header.hbs', 'utf8'),
     ignoreReverted: false
   }
 }
