@@ -123,8 +123,8 @@ jobs:
       - id: tag
         name: Create annotated tag
         run: |
-          git tag -asf $TAG -m "$MESSAGE"
-          git tag -v $TAG
+          git tag --annotated --force --sign $TAG --message "$MESSAGE"
+          git tag --verify $TAG
           git push origin --tags
         env:
           GIT_COMMITTER_NAME: ${{ steps.import-gpg.outputs.name }}
