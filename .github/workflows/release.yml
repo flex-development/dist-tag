@@ -133,7 +133,7 @@ jobs:
       - id: tag
         name: Create annotated tag
         run: |
-          git tag --annotated --force --sign $TAG --message "$MESSAGE"
+          git tag --annotate --force --sign $TAG --message "$MESSAGE"
           git tag --verify $TAG
           git push origin --tags
         env:
