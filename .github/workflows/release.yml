@@ -12,7 +12,6 @@
 # - https://github.com/actions/github-script
 # - https://github.com/bdougie/close-issues-based-on-label
 # - https://github.com/dawidd6/action-delete-branch
-# - https://github.com/lewagon/wait-on-check-action
 
 ---
 name: release
@@ -148,21 +147,10 @@ jobs:
   cleanup:
     needs: [metadata, publish]
     permissions:
-      checks: read
       contents: write
       issues: write
     runs-on: ubuntu-latest
     steps:
-      - id: wait
-        name: Wait for linked issues to be labeled
-        uses: lewagon/wait-on-check-action@v1.1.2
-        if: github.event_name != 'workflow_dispatch'
-        with:
-          allowed-conclusions: cancelled,success,skipped
-          check-name: label-linked-issues
-          ref: main
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          verbose: true
       - id: close-released-issues
         name: Close released issues
         uses: bdougie/close-issues-based-on-label@master
