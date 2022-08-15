@@ -24,9 +24,6 @@ on:
       - closed
   workflow_dispatch:
     inputs:
-      pr:
-        description: pull request number
-        required: true
       sha:
         description: pull request merge commit sha
         required: true
