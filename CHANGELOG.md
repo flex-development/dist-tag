@@ -1,4 +1,4 @@
-## [dist-tag@1.0.0](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.0-dev.1...dist-tag@dist-tag@1.0.0) (2022-08-08)
+## [dist-tag@1.0.0](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.0-dev.1...dist-tag@1.0.0) (2022-08-08)
 
 
 ### :package: Build
