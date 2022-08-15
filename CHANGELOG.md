@@ -1,3 +1,13 @@
+## [dist-tag@1.0.1-dev.3](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.1-dev.2...dist-tag@1.0.1-dev.3) (2022-08-15)
+
+
+### :robot: Continuous Integration
+
+* **workflows:** don't set `GIT_COMMITTER_DATE` when creating tags ([e72a05d](https://github.com/flex-development/dist-tag/commit/e72a05deb8d1d657dd6952d123963c1c9dfc9613))
+* **workflows:** fix `the receiving end does not support --signed push` ([67befd2](https://github.com/flex-development/dist-tag/commit/67befd23079b1b82b2e00d5bec3a7b41804e0a4b))
+* **workflows:** persist credentials in `release.jobs.publish` ([be06a8e](https://github.com/flex-development/dist-tag/commit/be06a8ec9a482266c417155bdabc882f81220d9c))
+* **workflows:** set trust on gpg key ([e650b4d](https://github.com/flex-development/dist-tag/commit/e650b4d4150984d686e410e751a1275f0da688de))
+
 ## [dist-tag@1.0.1-dev.2](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.1-dev.1...dist-tag@1.0.1-dev.2) (2022-08-15)
 
 
