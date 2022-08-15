@@ -1,3 +1,13 @@
+## [dist-tag@1.0.1-dev.4](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.1-dev.3...dist-tag@1.0.1-dev.4) (2022-08-15)
+
+
+### :robot: Continuous Integration
+
+* **workflows:** create release tags using `secrets.GITHUB_TOKEN` ([d8c970b](https://github.com/flex-development/dist-tag/commit/d8c970b1f349afaf082b7b86ca827b2d28c1b381))
+* **workflows:** fix `release.jobs.publish.steps.tag.env` ([30a0124](https://github.com/flex-development/dist-tag/commit/30a012490e32d1e6bdf39897defbdf1f34554c5e))
+* **workflows:** fix `unknown option 'annotated'` ([96f4bf3](https://github.com/flex-development/dist-tag/commit/96f4bf3174757d1838136a8097816a1e19061832))
+* **workflows:** fix gpg key trust logic ([d6e5ec3](https://github.com/flex-development/dist-tag/commit/d6e5ec3bc6a33d3e34dc71f6de41528509ff2624))
+
 ## [dist-tag@1.0.1-dev.3](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.1-dev.2...dist-tag@1.0.1-dev.3) (2022-08-15)
 
 
