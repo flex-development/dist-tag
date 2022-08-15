@@ -1,3 +1,57 @@
+## [dist-tag@1.0.1-dev.1](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.0...dist-tag@1.0.1-dev.1) (2022-08-15)
+
+
+### :package: Build
+
+* **deps-dev:** bump @vitest/ui from 0.21.0 to 0.21.1 ([5f5eb90](https://github.com/flex-development/dist-tag/commit/5f5eb904127d260e777d03e8ab235f5e2a04b78e))
+* **deps-dev:** bump cspell from 6.6.0 to 6.6.1 ([ba42491](https://github.com/flex-development/dist-tag/commit/ba42491bdad054263128fd2e3c754d869915699b))
+* **deps-dev:** bump eslint from 8.21.0 to 8.22.0 ([5022bd9](https://github.com/flex-development/dist-tag/commit/5022bd932893054fe83a396c3a3e508255f6677a))
+* **deps-dev:** bump eslint-plugin-jsdoc from 39.3.5 to 39.3.6 ([9d1b748](https://github.com/flex-development/dist-tag/commit/9d1b748c0e42e497838d61b886caaf40c8af49b9))
+* **deps-dev:** bump unbuild from 0.7.6 to 0.8.8 ([7c6d96c](https://github.com/flex-development/dist-tag/commit/7c6d96cbba249c798b7365934833f32cd0ead2b3))
+* **deps-dev:** bump vitest from 0.21.0 to 0.21.1 ([a208aec](https://github.com/flex-development/dist-tag/commit/a208aec0a457aaf1ab444680d96603e90e6ec272))
+
+
+### :robot: Continuous Integration
+
+* add gpr registry config for [@dependabot](https://github.com/dependabot) ([03df75d](https://github.com/flex-development/dist-tag/commit/03df75dbe8eb39c8996e7fa1253c3d22610f9766))
+* **deps:** bump actions/cache from 3 to 3.0.7 ([ded381b](https://github.com/flex-development/dist-tag/commit/ded381bd9f1314d63998053da38c9935b231e851))
+* **deps:** bump actions/checkout from 3 to 3.0.2 ([ae7e0fc](https://github.com/flex-development/dist-tag/commit/ae7e0fc5fe5b669ae5f2c0069e5337c8a7d61c46))
+* **deps:** bump actions/github-script from 6.1.0 to 6.1.1 ([35b2984](https://github.com/flex-development/dist-tag/commit/35b298437f0e98227760e161e5da70f214d22792))
+* **deps:** bump actions/setup-node from 3 to 3.4.1 ([8817273](https://github.com/flex-development/dist-tag/commit/8817273493846d276bd008267eb9b4bc7dda04fb))
+* **workflows:** `label-linked-issues` ([0e77ce8](https://github.com/flex-development/dist-tag/commit/0e77ce8890f7c9be1cf220bf7afd6a138a3ce1ba))
+* **workflows:** `query-linked-issues` ([ed9270e](https://github.com/flex-development/dist-tag/commit/ed9270e4ee0b6fab7564d1d9e9f838092fee20f3))
+* **workflows:** close inactionable issues after `14` days ([cc29b2a](https://github.com/flex-development/dist-tag/commit/cc29b2a9600b275995a251d626dd6b29fd0aa676))
+* **workflows:** fix install commands ([67fa3f4](https://github.com/flex-development/dist-tag/commit/67fa3f4f606428a148fa19b11b486c639162023d)), closes [yarnpkg/berry#2530](https://github.com/yarnpkg/berry/issues/2530) [yarnpkg/berry#3486](https://github.com/yarnpkg/berry/issues/3486)
+* **workflows:** lock inactive threads after `60` days ([c26746b](https://github.com/flex-development/dist-tag/commit/c26746b8578c3f5c37cedaee2d32d6a73285759a))
+* **workflows:** reduce number of `integrity` runs using `concurrency` ([dc8070b](https://github.com/flex-development/dist-tag/commit/dc8070bd78291117fe92899a7d0467a2913ab9bc))
+* **workflows:** reduce number of ci workflow runs ([650e32e](https://github.com/flex-development/dist-tag/commit/650e32ec4f05d832049511f3fde335b128a36c6b))
+* **workflows:** refactor release and package publishing ([3d4ee4e](https://github.com/flex-development/dist-tag/commit/3d4ee4ec7a027107ffd90754bd2ab3527ceb85e7))
+* **workflows:** reimplement [@dependabot](https://github.com/dependabot) auto approve and merge ([0bee5c3](https://github.com/flex-development/dist-tag/commit/0bee5c3892eddabf3a8c0c60f7f64426bf468643))
+* **workflows:** reimplement label management workflow ([677de40](https://github.com/flex-development/dist-tag/commit/677de409cc48ba5010d2dfc1e42b126c93d77dd0))
+* **workflows:** reimplement pr auto approval ([47f80bb](https://github.com/flex-development/dist-tag/commit/47f80bbf21d49836317b62c9b8872f4c808ce943))
+* **workflows:** remove `node` step from ci workflow ([59be073](https://github.com/flex-development/dist-tag/commit/59be073ff0c0e1061cd6df7b32c3ae6f8ca30c47))
+* **workflows:** update `integrity` event path triggers ([30a4b6b](https://github.com/flex-development/dist-tag/commit/30a4b6b64be76cce38c22a79d63751dc411bb79d))
+* **workflows:** use github token w/ set permissions ([5ecc776](https://github.com/flex-development/dist-tag/commit/5ecc77642efe6660f2ad6d96f5a1884b84cd3118))
+
+
+### :pencil: Documentation
+
+* **release:** fix changelog compare link for `dist-tag@1.0.0` ([d848ff6](https://github.com/flex-development/dist-tag/commit/d848ff664144b0b5822a5c3dbb34ffb7f5888bca))
+* **workflows:** sort + update reference links ([76d433c](https://github.com/flex-development/dist-tag/commit/76d433c4097c0e0e22d4ac561c116ae971acac4c))
+
+
+### :house_with_garden: Housekeeping
+
+* update sample gitconfig ([4b86dff](https://github.com/flex-development/dist-tag/commit/4b86dffe050cc838769e8c16d117862cb0137497))
+* **github:** add `status:prereleased` label ([84c255f](https://github.com/flex-development/dist-tag/commit/84c255fac0aa43002ec1a8544ebba4604408cf24))
+* **pkg:** fix keywords ([a132361](https://github.com/flex-development/dist-tag/commit/a13236114daec14393cc7ccfb6d7be2cca437d34))
+* **release:** get recommended version bump based on commits ([67f6126](https://github.com/flex-development/dist-tag/commit/67f61263c13283d6066c880ec23aadcb0ab2c350))
+* **release:** update commit message format ([6eb1c04](https://github.com/flex-development/dist-tag/commit/6eb1c0411808639ef86e26ceadc9927bfdb41594))
+* **release:** update local workflow ([2b775cc](https://github.com/flex-development/dist-tag/commit/2b775cc3aa7de8413bfc8721b4d0a75d73954ced))
+* **release:** update version regex ([07dd57d](https://github.com/flex-development/dist-tag/commit/07dd57d02f3f7dca175734969c8a242bd6f1ca45))
+* **release:** use `headerPartial` to change changelog entry title ([57741cc](https://github.com/flex-development/dist-tag/commit/57741cc3f85daf232b74394b80e3de63f3429d85))
+* **yarn:** cleanup yarn environment ([861ae16](https://github.com/flex-development/dist-tag/commit/861ae1651ca565349c5b442003ed87f35b80e8a0))
+
 ## [dist-tag@1.0.0](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.0-dev.1...dist-tag@1.0.0) (2022-08-08)
 
 
