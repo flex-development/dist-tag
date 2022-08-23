@@ -37,6 +37,7 @@ npmjs
 npmrc
 nums
 nvmrc
+ohmyzsh
 pdel
 pkgs
 preid
