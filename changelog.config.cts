@@ -13,13 +13,6 @@ import fs from 'node:fs'
 import pkg from './package.json'
 
 /**
- * Git tag prefix.
- *
- * @const {string} TAG_PREFIX
- */
-const TAG_PREFIX: string = pkg.name.split('/')[1]! + '@'
-
-/**
  * Changelog configuration options.
  *
  * @see https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-conventionalcommits
@@ -52,7 +45,7 @@ const config: Config = {
       ]
     },
     skipUnstable: false,
-    tagPrefix: TAG_PREFIX,
+    tagPrefix: pkg.tagPrefix,
     /**
      * Raw commit transformer.
      *
@@ -72,8 +65,8 @@ const config: Config = {
          *
          * @const {RegExp} vgx
          */
-        const vgx: RegExp = TAG_PREFIX
-          ? new RegExp(`tag:\\s*[=]?${TAG_PREFIX}(.+?)[,)]`, 'gi')
+        const vgx: RegExp = pkg.tagPrefix
+          ? new RegExp(`tag:\\s*[=]?${pkg.tagPrefix}(.+?)[,)]`, 'gi')
           : /tag:\s*[=v]?(.+?)[),]/gi
 
         commit = Object.assign({}, commit, {
