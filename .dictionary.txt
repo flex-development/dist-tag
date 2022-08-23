@@ -46,5 +46,6 @@ syncer
 tsnode
 tspaths
 vates
+vitest
 vsicons
 yarnrc
