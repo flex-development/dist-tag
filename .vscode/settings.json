@@ -47,7 +47,6 @@
     "extensions": ["cjs", "cts", "gql", "json", "md", "mjs", "ts", "yml"],
     "overrideConfigFile": "./.eslintrc.cjs"
   },
-  "eslint.packageManager": "yarn",
   "eslint.validate": [
     "graphql",
     "javascript",
@@ -56,7 +55,6 @@
     "typescript"
   ],
   "files.associations": {
-    "*.hbs": "handlebars",
     "*.snap": "jest-snapshot",
     ".env.zsh": "shellscript",
     ".markdownlintignore": "ignore",
