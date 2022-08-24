@@ -29,8 +29,6 @@ updates:
     commit-message:
       prefix: build
       include: scope
-    ignore:
-      - dependency-name: unbuild
     labels:
       - scope:dependencies
       - type:build
