@@ -14,12 +14,6 @@ const config = {
   overrides: [
     ...require('./.eslintrc.base.cjs').overrides,
     {
-      files: ['build.config.ts'],
-      rules: {
-        'unicorn/prefer-module': 0
-      }
-    },
-    {
       files: ['src/cli.ts'],
       rules: {
         'node/no-process-exit': 0
