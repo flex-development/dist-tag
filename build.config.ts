@@ -114,7 +114,7 @@ const config: BuildConfig = defineBuildConfig({
      * @see https://github.com/unjs/mkdist#-usage
      *
      * @param {BuildContext} _ - Build context
-     * @param {MkdistBuildEntry} __ - Build entry (`mkdist`)
+     * @param {MkdistBuildEntry} __ - `mkdist` build entry
      * @param {MkdistOptions} options - `mkdist` build options
      * @return {void} Nothing when complete
      */
