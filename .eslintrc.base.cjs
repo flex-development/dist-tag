@@ -1002,7 +1002,6 @@ const config = {
         faker: true,
         it: true,
         pf: true,
-        restoreConsole: true,
         suite: true,
         test: true,
         vi: true,
