@@ -30,33 +30,25 @@
     "dist",
     "src"
   ],
-  "bin": {
-    "dist-tag": "./dist/cli.cjs",
-    "dist-tag-esm": "./dist/cli.mjs"
-  },
+  "bin": "./dist/cli.mjs",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./flags": {
-      "types": "./dist/flags.d.ts",
-      "import": "./dist/flags.mjs",
-      "require": "./dist/flags.cjs"
-    },
-    "./options": {
-      "types": "./dist/options.d.ts",
-      "import": "./dist/options.mjs",
-      "require": "./dist/options.cjs"
-    },
+    ".": "./dist/index.mjs",
+    "./flags": "./dist/flags.mjs",
+    "./options": "./dist/options.mjs",
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.mts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*.d.mts",
+        "./dist/index.d.mts"
+      ]
+    }
+  },
   "scripts": {
-    "build": "unbuild",
+    "build": "mkbuild",
     "check:ci": "yarn dedupe --check && yarn check:format && yarn check:lint && yarn check:spelling && yarn check:types && yarn check:types:build && yarn test:cov && NODE_ENV=production yarn pack -o %s-%v.tgz && yarn clean:pack",
     "check:format": "prettier --check .",
     "check:lint": "eslint --exit-on-fatal-error --ext cjs,cts,gql,json,jsonc,md,mjs,ts,yml --max-warnings 0 .",
@@ -90,6 +82,7 @@
     "@commitlint/config-conventional": "17.0.3",
     "@commitlint/types": "17.0.0",
     "@faker-js/faker": "7.4.0",
+    "@flex-development/mkbuild": "flex-development/mkbuild",
     "@flex-development/tutils": "5.0.0-dev.1",
     "@graphql-eslint/eslint-plugin": "3.10.7",
     "@jsdevtools/chai-exec": "2.1.1",
@@ -141,14 +134,12 @@
     "prettier": "2.7.1",
     "prettier-plugin-sh": "0.12.8",
     "pretty-format": "28.1.3",
-    "resolve-tspaths": "0.7.4",
     "sade": "1.8.1",
     "trash-cli": "5.0.0",
     "ts-dedent": "2.2.0",
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.1.0",
     "typescript": "4.8.2",
-    "unbuild": "0.8.8",
     "version-bump-prompt": "6.1.0",
     "vite-tsconfig-paths": "3.5.0",
     "vitest": "0.21.1",
@@ -158,7 +149,6 @@
   "resolutions": {
     "@ardatan/sync-fetch": "larsgw/sync-fetch#head=worker_threads",
     "graphql-config": "patch:graphql-config@npm%3A4.3.5#patches/graphql-config+4.3.5.dev.patch",
-    "mkdist": "patch:mkdist@npm:0.3.13#patches/mkdist-npm-0.3.13-c41cf41c68.patch",
     "typescript": "4.8.2",
     "vite": "3.1.3"
   },
