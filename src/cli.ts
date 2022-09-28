@@ -8,7 +8,7 @@
 import type mri from 'mri'
 import path from 'node:path'
 import sade from 'sade'
-import { description, version } from '../package.json'
+import pkg from '../package.json' assert { type: 'json' }
 import type Flags from './flags'
 import lookup from './node'
 
@@ -43,8 +43,8 @@ if (/dist-tag-esm/.test(filename) || path.extname(filename) === '.mjs') {
 const program: sade.Sade = sade([name, '[target]'].join(' '))
 
 program
-  .version(version) /* c8 ignore stop */
-  .describe(description)
+  .version(pkg.version) /* c8 ignore stop */
+  .describe(pkg.description)
   .example('2.0.0')
   .example('2.0.0-alpha.1')
   .example('foo-package@2.0.0-beta.1 --delimiter @')

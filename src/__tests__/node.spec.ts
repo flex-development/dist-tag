@@ -3,7 +3,7 @@
  * @module dist-tag/tests/unit/node
  */
 
-import type { TestcaseFn } from 'tests/interfaces'
+import type { TestcaseFn } from '#tests/interfaces'
 import testSubject from '../node'
 
 describe('unit:node', () => {

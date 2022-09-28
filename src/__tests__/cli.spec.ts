@@ -3,8 +3,8 @@
  * @module dist-tag/tests/unit/cli
  */
 
+import type { TestcaseFn } from '#tests/interfaces'
 import exec from '@jsdevtools/chai-exec'
-import type { TestcaseFn } from 'tests/interfaces'
 import type lookup from '../node'
 
 describe('unit:cli', () => {
@@ -22,8 +22,11 @@ describe('unit:cli', () => {
 
   cases.forEach(({ expected, parameters }) => {
     it(`should output ${pf(expected)} given ${pf(parameters)}`, () => {
+      // Arrange
+      const args: string[] = ['node', '--loader=./loader.mjs', 'src/cli']
+
       // Act
-      const result = exec(['ts-node', 'src/cli', ...parameters])
+      const result = exec([...args, ...parameters])
 
       // Expect
       expect(result).to.have.property('exitCode', 0)

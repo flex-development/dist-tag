@@ -5,7 +5,7 @@
  */
 
 /**
- * @type {import('eslint').Linter.Config}
+ * @type {typeof import('eslint').Linter.Config}
  * @const config - ESLint configuration object
  */
 const config = {
@@ -16,7 +16,7 @@ const config = {
     {
       files: ['src/cli.ts'],
       rules: {
-        'node/no-process-exit': 0
+        'unicorn/no-process-exit': 0
       }
     },
     {
