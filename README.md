@@ -85,25 +85,6 @@ If you installed `dist-tag` locally, you may need to update your `PATH`:
 [ -d $PWD/node_modules/.bin ] && export PATH=$PWD/node_modules/.bin:$PATH
 ```
 
-#### CLI (ESM)
-
-```sh
-Usage
-  $ dist-tag-esm [target] [options]
-
-Options
-  -d, --delimiter Lookup target separator
-  -v, --version Displays current version
-  -h, --help Displays this message
-
-Examples
-  $ dist-tag-esm                                         # ''
-  $ dist-tag-esm 2.0.0                                   # ''
-  $ dist-tag-esm 2.0.0-alpha.1                           # 'alpha'
-  $ dist-tag-esm foo-package@2.0.0-beta.1 --delimiter @  # 'beta'
-  $ dist-tag-esm $(git describe --tags --abbrev=0) -d @  # depends on the tag 😉
-```
-
 ### Node.js
 
 ```typescript
