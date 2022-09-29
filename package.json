@@ -148,7 +148,7 @@
   },
   "resolutions": {
     "@ardatan/sync-fetch": "larsgw/sync-fetch#head=worker_threads",
-    "graphql-config": "patch:graphql-config@npm%3A4.3.5#patches/graphql-config+4.3.5.dev.patch",
+    "graphql-config": "4.3.5",
     "typescript": "4.8.2",
     "vite": "3.1.3"
   },
