@@ -354,11 +354,11 @@ Before deploying, the following steps must be completed:
 5. `yarn release`
 6. Open PR from `release/*` into `main`
    - PR title should match `release: <release-tag>`
-     - e.g: `release: 1.1.0`
+     - e.g: `release: dist-tag@1.1.0`
    - link all issues being released
    - after review, `squash and merge` PR
      - `release: <release-tag> (#pull-request-n)`
-       - e.g: `release: 1.1.0 (#3)`
+       - e.g: `release: dist-tag@1.1.0 (#3)`
    - on PR merge, [release workflow](.github/workflows/release.yml) will fire
      - if successful, the workflow will:
        - pack project
