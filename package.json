@@ -60,7 +60,7 @@
     "clean:modules": "trash ./.yarn/{cache,*.gz} ./node_modules",
     "clean:pack": "trash ./*.tgz",
     "clean:test": "trash ./coverage",
-    "conventional-changelog": "ts-node ./node_modules/.bin/conventional-changelog -n ./changelog.config.cts",
+    "conventional-changelog": "node --loader=./loader.mjs ./node_modules/.bin/conventional-changelog -n ./changelog.config.cts",
     "dist-tag": "node --loader=./loader.mjs ./src/cli",
     "fix:cg": "yarn fix:format && yarn fix:lint",
     "fix:dedupe": "yarn dedupe --strategy=highest",
