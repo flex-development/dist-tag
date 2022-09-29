@@ -14,7 +14,7 @@ import tsconfig from './tsconfig.build.json' assert { type: 'json' }
  */
 const config: Config = defineBuildConfig({
   entries: [
-    { declaration: true, ignore: ['cli.ts'] },
+    { ignore: ['cli.ts'] },
     { bundle: true, minify: true, source: 'src/cli.ts' }
   ],
   esbuild: {
