@@ -17,14 +17,12 @@ const config: Config = defineBuildConfig({
     { ignore: ['cli.ts'] },
     { bundle: true, minify: true, source: 'src/cli.ts' }
   ],
-  esbuild: {
-    platform: 'node',
-    sourcemap: 'external',
-    sourcesContent: false,
-    target: [tsconfig.compilerOptions.target, 'node14'],
-    treeShaking: true,
-    tsconfig: 'tsconfig.build.json'
-  }
+  platform: 'node',
+  sourcemap: 'external',
+  sourcesContent: false,
+  target: [tsconfig.compilerOptions.target, 'node14'],
+  treeShaking: true,
+  tsconfig: 'tsconfig.build.json'
 })
 
 export default config
