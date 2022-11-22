@@ -1,3 +1,15 @@
+## [dist-tag@3.0.0](https://github.com/flex-development/dist-tag/compare/dist-tag@2.0.0...dist-tag@3.0.0) (2022-11-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **exports:** export `.` and `./package.json` only
+
+### :package: Build
+
+* **deps-dev:** cleanup + upgrade deps ([bcc4d03](https://github.com/flex-development/dist-tag/commit/bcc4d0349076793ef95e6b0006e91ec715dfc544))
+* **exports:** export `.` and `./package.json` only ([0e72d7f](https://github.com/flex-development/dist-tag/commit/0e72d7f97a8443d20252c642af869e30046fdce5))
+
 ## [dist-tag@2.0.0](https://github.com/flex-development/dist-tag/compare/dist-tag@1.0.1...dist-tag@2.0.0) (2022-09-29)
 
 
